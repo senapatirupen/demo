@@ -16,20 +16,15 @@ public class Product extends AuditLog {
     private Long caId;
     @Column(name="NAME", unique = false, nullable = false)
     private String name;
-    @Column(name="PRICE", unique = false, nullable = false)
-    private Float price;
-    @Column(name="OFFER_PERCENTAGE", unique = false, nullable = false)
-    private Float offerPercentage;
-    @Column(name="SPECIFICATION", unique = false, nullable = false)
-    private String specification;
+    @Column(name="model", unique = false, nullable = false)
+    private String model;
     @Column(name="PRODUCT_STATUS", unique = false, nullable = false)
     private String productStatus;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="FE_ID")
     private Feedback feedback;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="ST_ID")
-    private Stock stock;
+    @Column(name="IS_STOCK_AVAILABLE", unique = false, nullable = false)
+    private Boolean isStockAvailable;
 
     public Product() {
     }
@@ -66,28 +61,12 @@ public class Product extends AuditLog {
         this.name = name;
     }
 
-    public Float getPrice() {
-        return price;
+    public String getModel() {
+        return model;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public Float getOfferPercentage() {
-        return offerPercentage;
-    }
-
-    public void setOfferPercentage(Float offerPercentage) {
-        this.offerPercentage = offerPercentage;
-    }
-
-    public String getSpecification() {
-        return specification;
-    }
-
-    public void setSpecification(String specification) {
-        this.specification = specification;
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getProductStatus() {
@@ -106,11 +85,11 @@ public class Product extends AuditLog {
         this.feedback = feedback;
     }
 
-    public Stock getStock() {
-        return stock;
+    public Boolean getStockAvailable() {
+        return isStockAvailable;
     }
 
-    public void setStock(Stock stock) {
-        this.stock = stock;
+    public void setStockAvailable(Boolean stockAvailable) {
+        isStockAvailable = stockAvailable;
     }
 }
