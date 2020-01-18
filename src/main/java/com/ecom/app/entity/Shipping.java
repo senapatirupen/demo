@@ -10,11 +10,11 @@ public class Shipping extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "SH_ID", insertable = false, updatable = false, nullable = false)
-    private Integer shId;
+    private Long shId;
     @Column(name = "PR_IDS")
     private String prIds;
     @Column(name = "OD_ID", unique = false, nullable = false)
-    private Integer odId;
+    private Long odId;
     @Column(name = "SHIPPING_STATUS", unique = false, nullable = false)
     private String shippingStatus;
     @Column(name = "PRODUCT_HEALTH_STATUS", unique = false, nullable = false)
@@ -42,11 +42,11 @@ public class Shipping extends AuditLog {
     public Shipping() {
     }
 
-    public Integer getShId() {
+    public Long getShId() {
         return shId;
     }
 
-    public void setShId(Integer shId) {
+    public void setShId(Long shId) {
         this.shId = shId;
     }
 
@@ -58,11 +58,11 @@ public class Shipping extends AuditLog {
         this.prIds = prIds;
     }
 
-    public Integer getOdId() {
+    public Long getOdId() {
         return odId;
     }
 
-    public void setOdId(Integer odId) {
+    public void setOdId(Long odId) {
         this.odId = odId;
     }
 

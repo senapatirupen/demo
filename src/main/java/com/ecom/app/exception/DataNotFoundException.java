@@ -1,31 +1,31 @@
 package com.ecom.app.exception;
 
-public class EcomApplicationException extends Exception {
+public class DataNotFoundException extends Exception {
     private static final long serialVersionUID = 1L;
     private String message;
     private String id;
 
-    public EcomApplicationException() {
+    public DataNotFoundException() {
         super();
     }
 
-    public EcomApplicationException(String message) {
+    public DataNotFoundException(String message) {
         super(message);
         this.message = message;
     }
 
-    public EcomApplicationException(String message, String id) {
+    public DataNotFoundException(String message, String id) {
         super(message);
         this.message = message;
         this.id = id;
     }
 
-    public EcomApplicationException(String message, Throwable cause) {
+    public DataNotFoundException(String message, Throwable cause) {
         super(message, cause);
         this.message = message;
     }
 
-    public EcomApplicationException(Throwable cause) {
+    public DataNotFoundException(Throwable cause) {
         super(cause);
     }
 

@@ -11,7 +11,7 @@ public class Person extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="PE_ID", insertable = false, updatable = false, nullable = false)
-    private Integer peId;
+    private Long peId;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="US_ID")
     private UserDetail userDetail;
@@ -25,11 +25,11 @@ public class Person extends AuditLog {
     public Person() {
     }
 
-    public Integer getPeId() {
+    public Long getPeId() {
         return peId;
     }
 
-    public void setPeId(Integer peId) {
+    public void setPeId(Long peId) {
         this.peId = peId;
     }
 

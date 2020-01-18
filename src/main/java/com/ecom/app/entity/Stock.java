@@ -9,7 +9,7 @@ public class Stock extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ST_ID", insertable = false, updatable = false, nullable = false)
-    private Integer stId;
+    private Long stId;
     @Column(name = "NAME", unique = false, nullable = false)
     private String name;
     @Column(name = "IS_AVAILABLE", unique = false, nullable = false)
@@ -22,11 +22,11 @@ public class Stock extends AuditLog {
     public Stock() {
     }
 
-    public Integer getStId() {
+    public Long getStId() {
         return stId;
     }
 
-    public void setStId(Integer stId) {
+    public void setStId(Long stId) {
         this.stId = stId;
     }
 

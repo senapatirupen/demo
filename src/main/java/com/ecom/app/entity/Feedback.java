@@ -9,11 +9,11 @@ public class Feedback extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "FE_ID", insertable = false, updatable = false, nullable = false)
-    private Integer feId;
+    private Long feId;
     @Column(name="OR_IDS")
     private String orIds;
     @Column(name="PR_ID", unique = false, nullable = false)
-    private Integer prId;
+    private Long prId;
     @Column(name="RATING", unique = false, nullable = false)
     private String rating;
     @Column(name="REVIEW", unique = false, nullable = false)
@@ -24,11 +24,11 @@ public class Feedback extends AuditLog {
     public Feedback() {
     }
 
-    public Integer getFeId() {
+    public Long getFeId() {
         return feId;
     }
 
-    public void setFeId(Integer feId) {
+    public void setFeId(Long feId) {
         this.feId = feId;
     }
 
@@ -40,11 +40,11 @@ public class Feedback extends AuditLog {
         this.orIds = orIds;
     }
 
-    public Integer getPrId() {
+    public Long getPrId() {
         return prId;
     }
 
-    public void setPrId(Integer prId) {
+    public void setPrId(Long prId) {
         this.prId = prId;
     }
 

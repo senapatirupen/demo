@@ -9,7 +9,7 @@ public class Payment extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="PA_ID", insertable = false, updatable = false, nullable = false)
-    private Integer paId;
+    private Long paId;
     @Column(name="NAME", unique = false, nullable = false)
     private String name;
     @Column(name="PRICE", unique = false, nullable = false)
@@ -24,11 +24,11 @@ public class Payment extends AuditLog {
     public Payment() {
     }
 
-    public Integer getPaId() {
+    public Long getPaId() {
         return paId;
     }
 
-    public void setPaId(Integer paId) {
+    public void setPaId(Long paId) {
         this.paId = paId;
     }
 

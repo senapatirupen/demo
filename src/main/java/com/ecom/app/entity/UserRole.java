@@ -9,18 +9,18 @@ public class UserRole extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "UR_ID")
-    private Integer urId;
+    private Long urId;
     @Column(name = "ROLE", unique = false, nullable = false)
     private String role;
 
     public UserRole() {
     }
 
-    public Integer getUrId() {
+    public Long getUrId() {
         return urId;
     }
 
-    public void setUrId(Integer urId) {
+    public void setUrId(Long urId) {
         this.urId = urId;
     }
 

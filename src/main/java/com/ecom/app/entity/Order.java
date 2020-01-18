@@ -10,9 +10,9 @@ public class Order extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="OD_ID", insertable = false, updatable = false, nullable = false)
-    private Integer odId;
+    private Long odId;
     @Column(name="PE_ID")
-    private Integer peId;
+    private Long peId;
     @Column(name="ORDER_STATUS", unique = false, nullable = false)
     private String orderStatus;
     @Column(name="IS_DELIVERED", unique = false, nullable = false)
@@ -33,19 +33,19 @@ public class Order extends AuditLog {
     public Order() {
     }
 
-    public Integer getOdId() {
+    public Long getOdId() {
         return odId;
     }
 
-    public void setOdId(Integer odId) {
+    public void setOdId(Long odId) {
         this.odId = odId;
     }
 
-    public Integer getPeId() {
+    public Long getPeId() {
         return peId;
     }
 
-    public void setPeId(Integer peId) {
+    public void setPeId(Long peId) {
         this.peId = peId;
     }
 

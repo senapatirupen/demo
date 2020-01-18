@@ -1,31 +1,31 @@
 package com.ecom.app.exception;
 
-public class EcomApplicationException extends Exception {
+public class EcomServiceException extends Exception {
     private static final long serialVersionUID = 1L;
     private String message;
     private String id;
 
-    public EcomApplicationException() {
+    public EcomServiceException() {
         super();
     }
 
-    public EcomApplicationException(String message) {
+    public EcomServiceException(String message) {
         super(message);
         this.message = message;
     }
 
-    public EcomApplicationException(String message, String id) {
+    public EcomServiceException(String message, String id) {
         super(message);
         this.message = message;
         this.id = id;
     }
 
-    public EcomApplicationException(String message, Throwable cause) {
+    public EcomServiceException(String message, Throwable cause) {
         super(message, cause);
         this.message = message;
     }
 
-    public EcomApplicationException(Throwable cause) {
+    public EcomServiceException(Throwable cause) {
         super(cause);
     }
 

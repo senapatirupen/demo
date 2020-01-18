@@ -9,7 +9,7 @@ public class WishList extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="WI_ID", insertable = false, updatable = false, nullable = false)
-    private Integer wiId;
+    private Long wiId;
     @Column(name="WISH_LIST_STATUS", unique = false, nullable = false)
     private String wishListStatus;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -19,11 +19,11 @@ public class WishList extends AuditLog {
     public WishList() {
     }
 
-    public Integer getWiId() {
+    public Long getWiId() {
         return wiId;
     }
 
-    public void setWiId(Integer wiId) {
+    public void setWiId(Long wiId) {
         this.wiId = wiId;
     }
 

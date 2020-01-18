@@ -9,11 +9,11 @@ public class Product extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="PR_ID", insertable = false, updatable = false, nullable = false)
-    private Integer prId;
+    private Long prId;
     @Column(name="OD_ID", unique = false, nullable = false)
-    private Integer odId;
+    private Long odId;
     @Column(name="CA_ID", unique = false, nullable = false)
-    private Integer caId;
+    private Long caId;
     @Column(name="NAME", unique = false, nullable = false)
     private String name;
     @Column(name="PRICE", unique = false, nullable = false)
@@ -34,27 +34,27 @@ public class Product extends AuditLog {
     public Product() {
     }
 
-    public Integer getPrId() {
+    public Long getPrId() {
         return prId;
     }
 
-    public void setPrId(Integer prId) {
+    public void setPrId(Long prId) {
         this.prId = prId;
     }
 
-    public Integer getOdId() {
+    public Long getOdId() {
         return odId;
     }
 
-    public void setOdId(Integer odId) {
+    public void setOdId(Long odId) {
         this.odId = odId;
     }
 
-    public Integer getCaId() {
+    public Long getCaId() {
         return caId;
     }
 
-    public void setCaId(Integer caId) {
+    public void setCaId(Long caId) {
         this.caId = caId;
     }
 

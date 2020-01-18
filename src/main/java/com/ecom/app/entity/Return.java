@@ -8,9 +8,9 @@ public class Return extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="RE_ID", insertable = false, updatable = false, nullable = false)
-    private Integer reId;
+    private Long reId;
     @Column(name="OD_ID")
-    private Integer odId;
+    private Long odId;
     @Column(name="PR_IDS")
     private String prIds;
     @Column(name="RETURN_STATUS", unique = false, nullable = false)
@@ -21,19 +21,19 @@ public class Return extends AuditLog {
     public Return() {
     }
 
-    public Integer getReId() {
+    public Long getReId() {
         return reId;
     }
 
-    public void setReId(Integer reId) {
+    public void setReId(Long reId) {
         this.reId = reId;
     }
 
-    public Integer getOdId() {
+    public Long getOdId() {
         return odId;
     }
 
-    public void setOdId(Integer odId) {
+    public void setOdId(Long odId) {
         this.odId = odId;
     }
 

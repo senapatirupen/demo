@@ -11,11 +11,11 @@ public class Delivery extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "DE_ID", insertable = false, updatable = false, nullable = false)
-    private Integer deId;
+    private Long deId;
     @Column(name = "PR_IDS")
     private String prIds;
     @Column(name = "SH_ID", unique = false, nullable = false)
-    private Integer shId;
+    private Long shId;
     @Column(name = "DELIVERY_STATUS", unique = false, nullable = false)
     private String deliveryStatus;
     @Column(name = "PRODUCT_HEALTH_STATUS", unique = false, nullable = false)
@@ -33,11 +33,11 @@ public class Delivery extends AuditLog {
     public Delivery() {
     }
 
-    public Integer getDeId() {
+    public Long getDeId() {
         return deId;
     }
 
-    public void setDeId(Integer deId) {
+    public void setDeId(Long deId) {
         this.deId = deId;
     }
 
@@ -49,11 +49,11 @@ public class Delivery extends AuditLog {
         this.prIds = prIds;
     }
 
-    public Integer getShId() {
+    public Long getShId() {
         return shId;
     }
 
-    public void setShId(Integer shId) {
+    public void setShId(Long shId) {
         this.shId = shId;
     }
 

@@ -14,7 +14,7 @@ public class UserDetail extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "US_ID", insertable = false, updatable = false, nullable = false)
-    private Integer usId;
+    private Long usId;
     @Column(name = "USER_NAME", unique = false, nullable = false)
     private String userName;
     @Column(name = "EMAIL_ID", unique = false, nullable = false)
@@ -30,11 +30,11 @@ public class UserDetail extends AuditLog {
     public UserDetail() {
     }
 
-    public Integer getUsId() {
+    public Long getUsId() {
         return usId;
     }
 
-    public void setUsId(Integer usId) {
+    public void setUsId(Long usId) {
         this.usId = usId;
     }
 

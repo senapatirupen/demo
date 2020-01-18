@@ -8,5 +8,5 @@ public class Receipt extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="RE_ID", insertable = false, updatable = false, nullable = false)
-    private Integer reId;
+    private Long reId;
 }

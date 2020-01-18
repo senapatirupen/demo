@@ -9,5 +9,5 @@ public class Invoice extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "IN_ID", insertable = false, updatable = false, nullable = false)
-    private Integer inId;
+    private Long inId;
 }

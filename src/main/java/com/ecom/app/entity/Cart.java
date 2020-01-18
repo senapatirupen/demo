@@ -10,11 +10,11 @@ public class Cart extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "CA_ID", insertable = false, updatable = false, nullable = false)
-    private Integer caId;
+    private Long caId;
     @Column(name = "CART_STATUS", unique = false, nullable = false)
     private String cartStatus;
     @Column(name = "PE_ID", unique = false, nullable = false)
-    private Integer peId;
+    private Long peId;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CA_ID")
     private Collection<Product> products;
@@ -22,11 +22,11 @@ public class Cart extends AuditLog {
     public Cart() {
     }
 
-    public Integer getCaId() {
+    public Long getCaId() {
         return caId;
     }
 
-    public void setCaId(Integer caId) {
+    public void setCaId(Long caId) {
         this.caId = caId;
     }
 
@@ -38,11 +38,11 @@ public class Cart extends AuditLog {
         this.cartStatus = cartStatus;
     }
 
-    public Integer getPeId() {
+    public Long getPeId() {
         return peId;
     }
 
-    public void setPeId(Integer peId) {
+    public void setPeId(Long peId) {
         this.peId = peId;
     }
 

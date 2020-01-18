@@ -8,7 +8,7 @@ public class Address extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="AD_ID", insertable = false, updatable = false, nullable = false)
-    private Integer adId;
+    private Long adId;
     @Column(name="PE_ID")
     private Integer peId;
     @Column(name="ADDRESS_LINE_ONE", unique = false, nullable = false)
@@ -31,11 +31,11 @@ public class Address extends AuditLog {
     public Address() {
     }
 
-    public Integer getAdId() {
+    public Long getAdId() {
         return adId;
     }
 
-    public void setAdId(Integer adId) {
+    public void setAdId(Long adId) {
         this.adId = adId;
     }
 
