@@ -22,13 +22,18 @@ public class Delivery extends AuditLog {
     private String productHealthStatus;
     @Column(name = "PACKAGING_STATUS", unique = false, nullable = false)
     private String packagingStatus;
-    @Column(name = "DELIVERY_DATE", unique = false, nullable = false)
+    @Column(name="START_DATE", nullable = false, unique = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date deliveryDate;
-    @Column(name = "DELIVERED_TO", unique = false, nullable = false)
-    private String derliveredTo;
-    @Column(name = "DELIVERY_ADDRESS", unique = false, nullable = false)
-    private String deliveryAddress;
+    private Date startDate;
+    @Column(name="END_DATE", nullable = false, unique = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endDate;
+    @Column(name = "EXPECTED_DATE", unique = false, nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date expectedDate;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="DEAD_ID")
+    private DeliveryAddress deliveryAddress;
 
     public Delivery() {
     }
@@ -81,27 +86,35 @@ public class Delivery extends AuditLog {
         this.packagingStatus = packagingStatus;
     }
 
-    public Date getDeliveryDate() {
-        return deliveryDate;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setDeliveryDate(Date deliveryDate) {
-        this.deliveryDate = deliveryDate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public String getDerliveredTo() {
-        return derliveredTo;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setDerliveredTo(String derliveredTo) {
-        this.derliveredTo = derliveredTo;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public String getDeliveryAddress() {
+    public Date getExpectedDate() {
+        return expectedDate;
+    }
+
+    public void setExpectedDate(Date expectedDate) {
+        this.expectedDate = expectedDate;
+    }
+
+    public DeliveryAddress getDeliveryAddress() {
         return deliveryAddress;
     }
 
-    public void setDeliveryAddress(String deliveryAddress) {
+    public void setDeliveryAddress(DeliveryAddress deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
     }
 }

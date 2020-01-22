@@ -21,21 +21,20 @@ public class Shipping extends AuditLog {
     private String productHealthStatus;
     @Column(name = "PACKAGING_CHARGE", unique = false, nullable = false)
     private Float packagingCharge;
-    @Column(name = "START_DATE", unique = false, nullable = false)
+    @Column(name="START_DATE", nullable = false, unique = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
-    @Column(name = "EXPECTED_DELIVERY_DATE", unique = false, nullable = false)
+    @Column(name="END_DATE", nullable = false, unique = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date expectedDeliveryDate;
-    @Column(name = "DELIVERED_DATE", unique = false, nullable = false)
+    private Date endDate;
+    @Column(name = "EXPECTED_DATE", unique = false, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date DeliveredDate;
+    private Date expectedDate;
     @Column(name = "COURIER_PERSON", unique = false, nullable = false)
     private String courierPerson;
-    @Column(name = "FROM_ADDRESS", unique = false, nullable = false)
-    private String fromAddress;
-    @Column(name = "TO_ADDRESS", unique = false, nullable = false)
-    private String toAddress;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="SHAD_ID")
+    private ShippingAddress shippingAddress;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Delivery delivery;
 
@@ -98,21 +97,7 @@ public class Shipping extends AuditLog {
         this.startDate = startDate;
     }
 
-    public Date getExpectedDeliveryDate() {
-        return expectedDeliveryDate;
-    }
 
-    public void setExpectedDeliveryDate(Date expectedDeliveryDate) {
-        this.expectedDeliveryDate = expectedDeliveryDate;
-    }
-
-    public Date getDeliveredDate() {
-        return DeliveredDate;
-    }
-
-    public void setDeliveredDate(Date deliveredDate) {
-        DeliveredDate = deliveredDate;
-    }
 
     public String getCourierPerson() {
         return courierPerson;
@@ -122,20 +107,28 @@ public class Shipping extends AuditLog {
         this.courierPerson = courierPerson;
     }
 
-    public String getFromAddress() {
-        return fromAddress;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setFromAddress(String fromAddress) {
-        this.fromAddress = fromAddress;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public String getToAddress() {
-        return toAddress;
+    public Date getExpectedDate() {
+        return expectedDate;
     }
 
-    public void setToAddress(String toAddress) {
-        this.toAddress = toAddress;
+    public void setExpectedDate(Date expectedDate) {
+        this.expectedDate = expectedDate;
+    }
+
+    public ShippingAddress getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(ShippingAddress shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
 
     public Delivery getDelivery() {

@@ -1,6 +1,7 @@
 package com.ecom.app.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="PRODUCT_INVENTORY")
@@ -14,6 +15,12 @@ public class ProductForInventory extends AuditLog {
     private String name;
     @Column(name="MODEL", unique = false, nullable = false)
     private String model;
+    @Column(name = "MFD_DATE", unique = false, nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date mfdDate;
+    @Column(name = "EXP_DATE", unique = false, nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date expDate;
     @Column(name="PRICE", unique = false, nullable = false)
     private Float price;
     @Column(name="OFFER_PERCENTAGE", unique = false, nullable = false)

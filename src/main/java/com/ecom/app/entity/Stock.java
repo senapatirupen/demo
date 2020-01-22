@@ -1,6 +1,7 @@
 package com.ecom.app.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "STOCK")
@@ -12,6 +13,15 @@ public class Stock extends AuditLog {
     private Long stId;
     @Column(name = "NAME", unique = false, nullable = false)
     private String name;
+    @Column(name="START_DATE", nullable = false, unique = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startDate;
+    @Column(name="END_DATE", nullable = false, unique = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endDate;
+    @Column(name = "EXPECTED_DATE", unique = false, nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date expectedDate;
     @Column(name = "IS_AVAILABLE", unique = false, nullable = false)
     private Boolean isAvailable;
     @Column(name = "QUANTITY", unique = false, nullable = false)
@@ -44,6 +54,30 @@ public class Stock extends AuditLog {
 
     public void setAvailable(Boolean available) {
         isAvailable = available;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Date getExpectedDate() {
+        return expectedDate;
+    }
+
+    public void setExpectedDate(Date expectedDate) {
+        this.expectedDate = expectedDate;
     }
 
     public Integer getQuantity() {

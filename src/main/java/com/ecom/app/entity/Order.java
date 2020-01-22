@@ -2,6 +2,7 @@ package com.ecom.app.entity;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 @Table(name="PE_ORDER")
@@ -19,6 +20,15 @@ public class Order extends AuditLog {
     private String isDelivered;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="OD_ID")
+    @Column(name="START_DATE", nullable = false, unique = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startDate;
+    @Column(name="END_DATE", nullable = false, unique = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endDate;
+    @Column(name = "EXPECTED_DATE", unique = false, nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date expectedDate;
     private Collection<Product> products;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="OD_ID")
@@ -31,6 +41,30 @@ public class Order extends AuditLog {
     private Payment payment;
 
     public Order() {
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Date getExpectedDate() {
+        return expectedDate;
+    }
+
+    public void setExpectedDate(Date expectedDate) {
+        this.expectedDate = expectedDate;
     }
 
     public Long getOdId() {
