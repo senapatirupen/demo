@@ -1,6 +1,7 @@
 package com.ecom.app.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "USER_DETAIL")
+@Data
 public class UserDetail extends AuditLog {
     private static final long serialVersionUID = 1L;
     @Id
@@ -26,55 +28,4 @@ public class UserDetail extends AuditLog {
     @Column(name = "DOB", unique = false, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dob;
-
-    public UserDetail() {
-    }
-
-    public Long getUsId() {
-        return usId;
-    }
-
-    public void setUsId(Long usId) {
-        this.usId = usId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmailId() {
-        return emailId;
-    }
-
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
 }

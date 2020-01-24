@@ -1,6 +1,7 @@
 package com.ecom.app.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "USERS")
+@Data
 public class User extends AuditLog {
     private static final long serialVersionUID = 1L;
     @Id
@@ -15,71 +17,13 @@ public class User extends AuditLog {
     @Column(name = "USER_ID")
     private Long id;
     @Column(name="USERNAME")
-    @NotEmpty
     private String username;
     @Column(name="PASSWORD")
-    @NotEmpty
-    @JsonIgnore
     private String password;
     @Column(name="FIRST_NAME")
-    @NotEmpty
     private String firstName;
     @Column(name="LAST_NAME")
-    @NotEmpty
     private String lastName;
-    @Column(name="ADMIN", columnDefinition = "ch{3}")
-    @Type(type="yes_no")
-    @NotEmpty
+    @Column(name="ADMIN")
     private String admin;
-
-    public User() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(String admin) {
-        this.admin = admin;
-    }
 }

@@ -8,15 +8,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-@Configuration
-@CacheConfig
+//@Configuration
+//@CacheConfig
 public class CachingConfig {
-    @Bean
+//    @Bean
     public CacheManager getEhCacheManager(){
         return new EhCacheCacheManager(getEhCacheFactory().getObject());
     }
 
-    @Bean
+//    @Bean
     public EhCacheManagerFactoryBean getEhCacheFactory(){
         EhCacheManagerFactoryBean factoryBean = new EhCacheManagerFactoryBean();
         factoryBean.setConfigLocation(new ClassPathResource("ehcache.xml"));

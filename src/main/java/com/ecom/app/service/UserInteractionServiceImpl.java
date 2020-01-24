@@ -52,7 +52,7 @@ public class UserInteractionServiceImpl implements UserInteractionService {
             emailId=userNameEmailId;
         else
             userName=userNameEmailId;
-        UserDetail userDetail = userDetailRepository.vlidateUserNameOrEmailId(userName, emailId);
+        UserDetail userDetail = userDetailRepository.validateUserNameOrEmailId(userName, emailId);
         return userDetail;
     }
 

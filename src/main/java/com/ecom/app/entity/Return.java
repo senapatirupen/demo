@@ -1,10 +1,13 @@
 package com.ecom.app.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name="RETURN")
+@Data
 public class Return extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -30,78 +33,4 @@ public class Return extends AuditLog {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="READ_ID")
     private ReturnAddress returnAddress;
-    public Return() {
-    }
-
-    public Long getReId() {
-        return reId;
-    }
-
-    public void setReId(Long reId) {
-        this.reId = reId;
-    }
-
-    public Long getOdId() {
-        return odId;
-    }
-
-    public void setOdId(Long odId) {
-        this.odId = odId;
-    }
-
-    public String getPrIds() {
-        return prIds;
-    }
-
-    public void setPrIds(String prIds) {
-        this.prIds = prIds;
-    }
-
-    public String getReturnStatus() {
-        return returnStatus;
-    }
-
-    public void setReturnStatus(String returnStatus) {
-        this.returnStatus = returnStatus;
-    }
-
-    public String getIsReturned() {
-        return isReturned;
-    }
-
-    public void setIsReturned(String isReturned) {
-        this.isReturned = isReturned;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Date getExpectedDate() {
-        return expectedDate;
-    }
-
-    public void setExpectedDate(Date expectedDate) {
-        this.expectedDate = expectedDate;
-    }
-
-    public ReturnAddress getReturnAddress() {
-        return returnAddress;
-    }
-
-    public void setReturnAddress(ReturnAddress returnAddress) {
-        this.returnAddress = returnAddress;
-    }
 }

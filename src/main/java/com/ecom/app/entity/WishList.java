@@ -1,10 +1,13 @@
 package com.ecom.app.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name="WISH_LIST")
+@Data
 public class WishList extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -15,31 +18,4 @@ public class WishList extends AuditLog {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="WI_ID")
     private Collection<Product> products;
-
-    public WishList() {
-    }
-
-    public Long getWiId() {
-        return wiId;
-    }
-
-    public void setWiId(Long wiId) {
-        this.wiId = wiId;
-    }
-
-    public String getWishListStatus() {
-        return wishListStatus;
-    }
-
-    public void setWishListStatus(String wishListStatus) {
-        this.wishListStatus = wishListStatus;
-    }
-
-    public Collection<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Collection<Product> products) {
-        this.products = products;
-    }
 }

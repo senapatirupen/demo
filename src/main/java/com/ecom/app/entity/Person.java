@@ -1,11 +1,14 @@
 package com.ecom.app.entity;
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name="PERSON")
+@Data
 public class Person extends AuditLog {
     private static final long serialVersionUID=1L;
     @Id
@@ -21,39 +24,4 @@ public class Person extends AuditLog {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="PE_ID")
     private Collection<Address> addresses;
-
-    public Person() {
-    }
-
-    public Long getPeId() {
-        return peId;
-    }
-
-    public void setPeId(Long peId) {
-        this.peId = peId;
-    }
-
-    public UserDetail getUserDetail() {
-        return userDetail;
-    }
-
-    public void setUserDetail(UserDetail userDetail) {
-        this.userDetail = userDetail;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
-
-    public Collection<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(Collection<Address> addresses) {
-        this.addresses = addresses;
-    }
 }

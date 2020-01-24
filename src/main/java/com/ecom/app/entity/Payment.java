@@ -1,9 +1,12 @@
 package com.ecom.app.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="PAYMENT")
+@Data
 public class Payment extends AuditLog {
     private static final long serialVersionUID=1L;
     @Id
@@ -20,55 +23,4 @@ public class Payment extends AuditLog {
     private String paymentStatus;
     @Column(name="TYPE", unique = false, nullable = false)
     private String type;
-
-    public Payment() {
-    }
-
-    public Long getPaId() {
-        return paId;
-    }
-
-    public void setPaId(Long paId) {
-        this.paId = paId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public Float getOfferPercentage() {
-        return offerPercentage;
-    }
-
-    public void setOfferPercentage(Float offerPercentage) {
-        this.offerPercentage = offerPercentage;
-    }
-
-    public String getPaymentStatus() {
-        return paymentStatus;
-    }
-
-    public void setPaymentStatus(String paymentStatus) {
-        this.paymentStatus = paymentStatus;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 }

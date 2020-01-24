@@ -1,9 +1,12 @@
 package com.ecom.app.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="ADDRESS")
+@Data
 public class Address extends AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -27,71 +30,4 @@ public class Address extends AuditLog {
     private String zipcode;
     @Column(name="TYPE", unique = false, nullable = false)
     private String type;
-
-    public Address() {
-    }
-
-    public Long getAdId() {
-        return adId;
-    }
-
-    public void setAdId(Long adId) {
-        this.adId = adId;
-    }
-
-    public Integer getPeId() {
-        return peId;
-    }
-
-    public void setPeId(Integer peId) {
-        this.peId = peId;
-    }
-
-    public String getAddressLineOne() {
-        return addressLineOne;
-    }
-
-    public void setAddressLineOne(String addressLineOne) {
-        this.addressLineOne = addressLineOne;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getCityVillage() {
-        return cityVillage;
-    }
-
-    public void setCityVillage(String cityVillage) {
-        this.cityVillage = cityVillage;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 }

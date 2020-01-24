@@ -1,10 +1,13 @@
 package com.ecom.app.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "SHIPPING")
+@Data
 public class Shipping extends AuditLog {
     private static final long serialVersionUID = 1L;
     @Id
@@ -37,105 +40,4 @@ public class Shipping extends AuditLog {
     private ShippingAddress shippingAddress;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Delivery delivery;
-
-    public Shipping() {
-    }
-
-    public Long getShId() {
-        return shId;
-    }
-
-    public void setShId(Long shId) {
-        this.shId = shId;
-    }
-
-    public String getPrIds() {
-        return prIds;
-    }
-
-    public void setPrIds(String prIds) {
-        this.prIds = prIds;
-    }
-
-    public Long getOdId() {
-        return odId;
-    }
-
-    public void setOdId(Long odId) {
-        this.odId = odId;
-    }
-
-    public String getShippingStatus() {
-        return shippingStatus;
-    }
-
-    public void setShippingStatus(String shippingStatus) {
-        this.shippingStatus = shippingStatus;
-    }
-
-    public String getProductHealthStatus() {
-        return productHealthStatus;
-    }
-
-    public void setProductHealthStatus(String productHealthStatus) {
-        this.productHealthStatus = productHealthStatus;
-    }
-
-    public Float getPackagingCharge() {
-        return packagingCharge;
-    }
-
-    public void setPackagingCharge(Float packagingCharge) {
-        this.packagingCharge = packagingCharge;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-
-
-    public String getCourierPerson() {
-        return courierPerson;
-    }
-
-    public void setCourierPerson(String courierPerson) {
-        this.courierPerson = courierPerson;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Date getExpectedDate() {
-        return expectedDate;
-    }
-
-    public void setExpectedDate(Date expectedDate) {
-        this.expectedDate = expectedDate;
-    }
-
-    public ShippingAddress getShippingAddress() {
-        return shippingAddress;
-    }
-
-    public void setShippingAddress(ShippingAddress shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    public Delivery getDelivery() {
-        return delivery;
-    }
-
-    public void setDelivery(Delivery delivery) {
-        this.delivery = delivery;
-    }
 }

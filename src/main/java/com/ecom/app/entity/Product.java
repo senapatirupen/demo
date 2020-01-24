@@ -1,9 +1,12 @@
 package com.ecom.app.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="PRODUCT")
+@Data
 public class Product extends AuditLog {
     private static final long serialVersionUID=1L;
     @Id
@@ -25,71 +28,4 @@ public class Product extends AuditLog {
     private Feedback feedback;
     @Column(name="IS_STOCK_AVAILABLE", unique = false, nullable = false)
     private Boolean isStockAvailable;
-
-    public Product() {
-    }
-
-    public Long getPrId() {
-        return prId;
-    }
-
-    public void setPrId(Long prId) {
-        this.prId = prId;
-    }
-
-    public Long getOdId() {
-        return odId;
-    }
-
-    public void setOdId(Long odId) {
-        this.odId = odId;
-    }
-
-    public Long getCaId() {
-        return caId;
-    }
-
-    public void setCaId(Long caId) {
-        this.caId = caId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getProductStatus() {
-        return productStatus;
-    }
-
-    public void setProductStatus(String productStatus) {
-        this.productStatus = productStatus;
-    }
-
-    public Feedback getFeedback() {
-        return feedback;
-    }
-
-    public void setFeedback(Feedback feedback) {
-        this.feedback = feedback;
-    }
-
-    public Boolean getStockAvailable() {
-        return isStockAvailable;
-    }
-
-    public void setStockAvailable(Boolean stockAvailable) {
-        isStockAvailable = stockAvailable;
-    }
 }

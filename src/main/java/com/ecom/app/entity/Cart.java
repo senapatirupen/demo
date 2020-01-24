@@ -1,10 +1,13 @@
 package com.ecom.app.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "CART")
+@Data
 public class Cart extends AuditLog {
     private static final long serialiVersionUID = 1L;
     @Id
@@ -18,39 +21,4 @@ public class Cart extends AuditLog {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CA_ID")
     private Collection<Product> products;
-
-    public Cart() {
-    }
-
-    public Long getCaId() {
-        return caId;
-    }
-
-    public void setCaId(Long caId) {
-        this.caId = caId;
-    }
-
-    public String getCartStatus() {
-        return cartStatus;
-    }
-
-    public void setCartStatus(String cartStatus) {
-        this.cartStatus = cartStatus;
-    }
-
-    public Long getPeId() {
-        return peId;
-    }
-
-    public void setPeId(Long peId) {
-        this.peId = peId;
-    }
-
-    public Collection<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Collection<Product> products) {
-        this.products = products;
-    }
 }

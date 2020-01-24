@@ -17,33 +17,33 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-@Configuration
-@EnableTransactionManagement
-@ComponentScan(basePackages = {"com.ecom.app.repository"})
-@Slf4j
+//@Configuration
+//@EnableTransactionManagement
+//@ComponentScan(basePackages = {"com.ecom.app.repository"})
+//@Slf4j
 public class JpaConfiguration {
-    @Bean
+//    @Bean
     public DataSource dataSource() {
         try {
             EmbeddedDatabaseBuilder dbBuilder = new EmbeddedDatabaseBuilder();
             return dbBuilder.setType(EmbeddedDatabaseType.H2).addScripts("classpath:db/schema.sql", "classpath:db/data.sql").build();
         } catch (Exception e) {
-            log.error("Embedded DataSource bean cannot be created", e);
+//            log.error("Embedded DataSource bean cannot be created", e);
             return null;
         }
     }
 
-    @Bean
+//    @Bean
     public PlatformTransactionManager transactionManager() {
         return new JpaTransactionManager(entityManagerFactory());
     }
 
-    @Bean
+//    @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         return new HibernateJpaVendorAdapter();
     }
 
-    @Bean
+//    @Bean
     public Properties hibernateProperties() {
         Properties hibernateProp = new Properties();
         hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
@@ -56,7 +56,7 @@ public class JpaConfiguration {
         return hibernateProp;
     }
 
-    @Bean
+//    @Bean
     public EntityManagerFactory entityManagerFactory(){
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setPackagesToScan("com.ecom.app.entity");

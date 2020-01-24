@@ -1,9 +1,12 @@
 package com.ecom.app.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "USER_ROLE")
+@Data
 public class UserRole extends AuditLog {
     private static final long serialVersionUID = 1L;
     @Id
@@ -12,23 +15,4 @@ public class UserRole extends AuditLog {
     private Long urId;
     @Column(name = "ROLE", unique = false, nullable = false)
     private String role;
-
-    public UserRole() {
-    }
-
-    public Long getUrId() {
-        return urId;
-    }
-
-    public void setUrId(Long urId) {
-        this.urId = urId;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 }
