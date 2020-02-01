@@ -6,13 +6,12 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.Serializable;
 
 @Data
-@Slf4j
-public class Payment implements Serializable {
+public class Payment extends AuditLog {
     private static final long serialVersionUID=1L;
-    private String paId;
+    private Long paId;
     private String name;
-    private String price;
-    private String offerPercentage;
+    private Float price;
+    private Float offerPercentage;
     private String paymentStatus;
     private String type;
 }

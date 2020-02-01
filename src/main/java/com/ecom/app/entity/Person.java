@@ -23,5 +23,8 @@ public class Person extends AuditLog {
     private Cart cart;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="PE_ID")
+    private Collection<Product> products;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="PE_ID")
     private Collection<Address> addresses;
 }

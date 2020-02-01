@@ -1,17 +1,12 @@
 package com.ecom.app.web.model;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-
-import java.io.Serializable;
 
 @Data
-public class Address extends AuditLog {
+public class ReturnAddress extends AuditLog {
     private static final long serialVersionUID=1L;
-    private Long adId;
-    private Long peId;
+    private Long readId;
+    private Integer reId;
     private String addressLineOne;
     private String addressLineTwo;
     private String landmark;

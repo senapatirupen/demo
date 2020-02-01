@@ -4,21 +4,21 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
+import java.util.Date;
+
 @Data
-@Slf4j
-public class Shipping implements Serializable {
+public class Shipping extends AuditLog {
     private static final long serialVersionUID=1L;
-    private String shId;
+    private Long shId;
     private String prIds;
-    private String odId;
+    private Long odId;
     private String shippingStatus;
     private String productHealthStatus;
-    private String packagingStatus;
-    private String packagingCharge;
-    private String startDate;
-    private String expectedDeliveryDate;
-    private String deliveredDate;
+    private Float packagingCharge;
+    private Date startDate;
+    private Date endDate;
+    private Date expectedDate;
     private String courierPerson;
-    private String fromAddress;
-    private String toAddress;
+    private ShippingAddress shippingAddress;
+    private Delivery delivery;
 }

@@ -14,25 +14,25 @@ import java.util.Objects;
 public class UserInteractionServiceImpl implements UserInteractionService {
 
     @Autowired
-    GenericEcomService genericEcomService;
+    PersonRepository personRepository;
 
-    private PersonRepository personRepository;
-    private UserDetailRepository userDetailRepository;
+    @Autowired
+    UserDetailRepository userDetailRepository;
 
-    public PersonRepository getPersonRepository() {
+    private PersonRepository getPersonRepository() {
         return personRepository;
     }
 
-    public void setPersonRepository() {
-        this.personRepository = genericEcomService.getPersonRepository();
+    private void setPersonRepository(PersonRepository personRepository) {
+        this.personRepository = personRepository;
     }
 
     public UserDetailRepository getUserDetailRepository() {
         return userDetailRepository;
     }
 
-    public void setUserDetailRepository() {
-        this.userDetailRepository = genericEcomService.getUserDetailRepository();
+    public void setUserDetailRepository(UserDetailRepository userDetailRepository) {
+        this.userDetailRepository = userDetailRepository;
     }
 
     public Person findPersonByUserName(String userName){

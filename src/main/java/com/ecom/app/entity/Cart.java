@@ -9,7 +9,7 @@ import java.util.Collection;
 @Table(name = "CART")
 @Data
 public class Cart extends AuditLog {
-    private static final long serialiVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "CA_ID", insertable = false, updatable = false, nullable = false)

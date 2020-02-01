@@ -5,8 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 @Data
-@Slf4j
-public class User implements Serializable {
+public class User extends AuditLog {
     private static final long serialVersionUID=1L;
     private String id;
     private String userName;

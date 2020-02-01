@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name="DELIVERY_ADDRESS")
 @Data
 public class DeliveryAddress extends AuditLog {
+    private static final long serialVersionUID=1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="DEAD_ID", insertable = false, updatable = false, nullable = false)

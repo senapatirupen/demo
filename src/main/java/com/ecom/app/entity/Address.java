@@ -8,12 +8,13 @@ import javax.persistence.*;
 @Table(name="ADDRESS")
 @Data
 public class Address extends AuditLog {
+    private static final long serialVersionUID=1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="AD_ID", insertable = false, updatable = false, nullable = false)
     private Long adId;
     @Column(name="PE_ID")
-    private Integer peId;
+    private Long peId;
     @Column(name="ADDRESS_LINE_ONE", unique = false, nullable = false)
     private String addressLineOne;
     @Column(name="ADDRESS_LINE_TWO", unique = false, nullable = false)

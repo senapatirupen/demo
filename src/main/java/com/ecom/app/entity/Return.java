@@ -9,6 +9,7 @@ import java.util.Date;
 @Table(name="RETURN")
 @Data
 public class Return extends AuditLog {
+    private static final long serialVersionUID=1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="RE_ID", insertable = false, updatable = false, nullable = false)

@@ -3,13 +3,17 @@ package com.ecom.app.web.model;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 @Data
-public class Stock implements Serializable {
+public class Stock extends AuditLog {
     private static final long serialVersionUID=1L;
-    private String stId;
+    private Long stId;
     private String name;
-    private String isAvailable;
-    private String quantity;
+    private Date startDate;
+    private Date endDate;
+    private Date expectedDate;
+    private Boolean isAvailable;
+    private Integer quantity;
     private String stockStatus;
 
 }

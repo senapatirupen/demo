@@ -9,6 +9,7 @@ import java.util.Collection;
 @Table(name="WISH_LIST")
 @Data
 public class WishList extends AuditLog {
+    private static final long serialVersionUID=1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="WI_ID", insertable = false, updatable = false, nullable = false)
