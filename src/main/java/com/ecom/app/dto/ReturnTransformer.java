@@ -14,4 +14,18 @@ public class ReturnTransformer {
 //        toReturn.setReturnAddress(fromReturn.getReturnAddress());
         return toReturn;
     }
+
+    public com.ecom.app.entity.Return transfer(com.ecom.app.web.model.Return fromReturn){
+        com.ecom.app.entity.Return toReturn = new com.ecom.app.entity.Return();
+        toReturn.setReId(fromReturn.getReId());
+        toReturn.setOdId(fromReturn.getOdId());
+        toReturn.setPrIds(fromReturn.getPrIds());
+        toReturn.setStartDate(fromReturn.getStartDate());
+        toReturn.setEndDate(fromReturn.getEndDate());
+        toReturn.setExpectedDate(fromReturn.getExpectedDate());
+        toReturn.setReturnStatus(fromReturn.getReturnStatus());
+        toReturn.setIsReturned(fromReturn.getIsReturned());
+//        toReturn.setReturnAddress(fromReturn.getReturnAddress());
+        return toReturn;
+    }
 }

@@ -11,4 +11,15 @@ public class PaymentTransformer {
         toPayment.setType(fromPayment.getType());
         return toPayment;
     }
+
+    public com.ecom.app.entity.Payment transfer(com.ecom.app.web.model.Payment fromPayment){
+        com.ecom.app.entity.Payment toPayment = new com.ecom.app.entity.Payment();
+        toPayment.setPaId(fromPayment.getPaId());
+        toPayment.setName(fromPayment.getName());
+        toPayment.setPrice(fromPayment.getPrice());
+        toPayment.setOfferPercentage(fromPayment.getOfferPercentage());
+        toPayment.setPaymentStatus(fromPayment.getPaymentStatus());
+        toPayment.setType(fromPayment.getType());
+        return toPayment;
+    }
 }

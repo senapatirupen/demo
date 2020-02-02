@@ -5,4 +5,9 @@ public class ReceiptTransformer {
         com.ecom.app.web.model.Receipt toReceipt = new com.ecom.app.web.model.Receipt();
         return toReceipt;
     }
+
+    public com.ecom.app.entity.Receipt transfer(com.ecom.app.web.model.Receipt fromReceipt){
+        com.ecom.app.entity.Receipt toReceipt = new com.ecom.app.entity.Receipt();
+        return toReceipt;
+    }
 }
