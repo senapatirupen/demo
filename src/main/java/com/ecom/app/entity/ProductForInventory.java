@@ -35,4 +35,10 @@ public class ProductForInventory extends AuditLog {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="ST_ID")
     private Stock stock;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="PR_DE_ID")
+    private ProductDescription productDescription;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="PR_SP_ID")
+    private ProductSpecification productSpecification;
 }

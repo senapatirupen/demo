@@ -6,7 +6,7 @@ import lombok.Data;
 public class ShippingAddress extends AuditLog {
     private static final long serialVersionUID=1L;
     private Long shadId;
-    private Integer shId;
+    private Long shId;
     private String addressLineOne;
     private String addressLineTwo;
     private String landmark;

@@ -14,7 +14,7 @@ public class ShippingAddress extends AuditLog {
     @Column(name="SHAD_ID", insertable = false, updatable = false, nullable = false)
     private Long shadId;
     @Column(name="SH_ID")
-    private Integer shId;
+    private Long shId;
     @Column(name="ADDRESS_LINE_ONE", unique = false, nullable = false)
     private String addressLineOne;
     @Column(name="ADDRESS_LINE_TWO", unique = false, nullable = false)

@@ -14,7 +14,7 @@ public class DeliveryAddress extends AuditLog {
     @Column(name="DEAD_ID", insertable = false, updatable = false, nullable = false)
     private Long deadId;
     @Column(name="DE_ID")
-    private Integer deId;
+    private Long deId;
     @Column(name="ADDRESS_LINE_ONE", unique = false, nullable = false)
     private String addressLineOne;
     @Column(name="ADDRESS_LINE_TWO", unique = false, nullable = false)

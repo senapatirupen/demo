@@ -5,9 +5,12 @@ import java.lang.reflect.Field;
 public class DtoGenerator {
 
     public static void main(String[] args) {
-        new DtoGenerator().printCustomizeSetterAndGetterToSetValue("com.ecom.app.entity.WishList",
-                "fromWishList", "com.ecom.app.web.model.WishList",
-                "toWishList");
+        new DtoGenerator().printCustomizeSetterAndGetterToSetValue("com.ecom.app.entity.Vote",
+                "fromVote", "com.ecom.app.web.model.Vote",
+                "toVote");
+        new DtoGenerator().printCustomizeSetterAndGetterToSetValue("com.ecom.app.web.model.Vote",
+                "fromVote", "com.ecom.app.entity.Vote",
+                "toVote");
 //        new DtoGenerator().printClassStructureFromC1ToC2(packageName+"AuditLog");
 
 

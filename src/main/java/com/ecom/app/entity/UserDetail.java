@@ -17,6 +17,10 @@ public class UserDetail extends AuditLog {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "US_ID", insertable = false, updatable = false, nullable = false)
     private Long usId;
+    @Column(name="FIRST_NAME", unique = false, nullable = false)
+    private String firstName;
+    @Column(name="LAST_NAME", unique = false, nullable = false)
+    private String lastName;
     @Column(name = "USER_NAME", unique = false, nullable = false)
     private String userName;
     @Column(name = "EMAIL_ID", unique = false, nullable = false)

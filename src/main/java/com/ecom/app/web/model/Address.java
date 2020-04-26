@@ -1,11 +1,6 @@
 package com.ecom.app.web.model;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-
-import java.io.Serializable;
 
 @Data
 public class Address extends AuditLog {

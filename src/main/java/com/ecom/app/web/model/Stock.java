@@ -2,7 +2,6 @@ package com.ecom.app.web.model;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 @Data
 public class Stock extends AuditLog {
@@ -15,5 +14,4 @@ public class Stock extends AuditLog {
     private Boolean isAvailable;
     private Integer quantity;
     private String stockStatus;
-
 }

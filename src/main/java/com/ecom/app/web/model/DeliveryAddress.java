@@ -6,7 +6,7 @@ import lombok.Data;
 public class DeliveryAddress extends AuditLog {
     private static final long serialVersionUID=1L;
     private Long deadId;
-    private Integer deId;
+    private Long deId;
     private String addressLineOne;
     private String addressLineTwo;
     private String landmark;

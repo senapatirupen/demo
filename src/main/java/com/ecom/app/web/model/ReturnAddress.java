@@ -6,7 +6,7 @@ import lombok.Data;
 public class ReturnAddress extends AuditLog {
     private static final long serialVersionUID=1L;
     private Long readId;
-    private Integer reId;
+    private Long reId;
     private String addressLineOne;
     private String addressLineTwo;
     private String landmark;

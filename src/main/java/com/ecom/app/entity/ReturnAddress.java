@@ -14,7 +14,7 @@ public class ReturnAddress extends AuditLog {
     @Column(name="READ_ID", insertable = false, updatable = false, nullable = false)
     private Long readId;
     @Column(name="RE_ID")
-    private Integer reId;
+    private Long reId;
     @Column(name="ADDRESS_LINE_ONE", unique = false, nullable = false)
     private String addressLineOne;
     @Column(name="ADDRESS_LINE_TWO", unique = false, nullable = false)

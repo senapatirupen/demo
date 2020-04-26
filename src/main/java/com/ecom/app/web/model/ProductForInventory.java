@@ -1,5 +1,7 @@
 package com.ecom.app.web.model;
 
+import com.ecom.app.entity.ProductDescription;
+import com.ecom.app.entity.ProductSpecification;
 import lombok.Data;
 
 import java.util.Date;
@@ -16,4 +18,6 @@ public class ProductForInventory extends AuditLog {
     private String specification;
     private String productForInventoryStatus;
     private Stock stock;
+    private ProductDescription productDescription;
+    private ProductSpecification productSpecification;
 }

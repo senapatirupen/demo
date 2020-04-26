@@ -3,11 +3,12 @@ package com.ecom.app.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "VOTE")
 @Data
-public class Vote extends AuditLog {
+public class Vote implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
