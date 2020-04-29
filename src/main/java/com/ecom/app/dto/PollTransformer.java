@@ -18,6 +18,7 @@ public class PollTransformer {
     public com.ecom.app.web.model.Poll transfer(com.ecom.app.entity.Poll fromPoll){
         com.ecom.app.web.model.Poll toPoll = new com.ecom.app.web.model.Poll();
         toPoll.setId(fromPoll.getId());
+        toPoll.setQuestion(fromPoll.getQuestion());
         toPoll.getDefaultOptions().addAll(fromPoll.getOptions().stream().map(fromOption ->
                 optionTransformer.transfer(fromOption)).collect(Collectors.toList()));
         return toPoll;

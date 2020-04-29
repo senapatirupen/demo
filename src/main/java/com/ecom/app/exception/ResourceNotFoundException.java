@@ -1,6 +1,9 @@
 package com.ecom.app.exception;
 
-public class ResourceNotFoundException extends Exception {
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+public class ResourceNotFoundException extends RuntimeException {
     private static final long serialVersionUID = 1L;
     private String message;
     private String id;
