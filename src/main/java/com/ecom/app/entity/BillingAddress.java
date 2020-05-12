@@ -7,14 +7,14 @@ import javax.persistence.*;
 @Entity
 @Table(name="DELIVERY_ADDRESS")
 @Data
-public class DeliveryAddress extends AuditLog {
+public class BillingAddress extends AuditLog {
     private static final long serialVersionUID=1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="DEAD_ID", insertable = false, updatable = false, nullable = false)
-    private Long deadId;
-    @Column(name="DE_ID")
-    private Long deId;
+    @Column(name="BIAD_ID", insertable = false, updatable = false, nullable = false)
+    private Long biadId;
+    @Column(name="OD_ID")
+    private Long odId;
     @Column(name="ADDRESS_LINE_ONE", unique = false, nullable = true)
     private String addressLineOne;
     @Column(name="ADDRESS_LINE_TWO", unique = false, nullable = true)

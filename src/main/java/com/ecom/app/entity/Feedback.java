@@ -15,7 +15,7 @@ public class Feedback extends AuditLog {
     private Long feId;
     @Column(name="OR_IDS")
     private String orIds;
-    @Column(name="PR_ID", unique = false, nullable = false)
+    @Column(name="PR_ID", unique = false, nullable = true)
     private Long prId;
     @Column(name="RATING", unique = false, nullable = false)
     private String rating;

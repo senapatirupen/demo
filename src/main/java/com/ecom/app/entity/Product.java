@@ -13,10 +13,12 @@ public class Product extends AuditLog {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="PR_ID", insertable = false, updatable = false, nullable = false)
     private Long prId;
-    @Column(name="OD_ID", unique = false, nullable = false)
+    @Column(name="OD_ID", unique = false, nullable = true)
     private Long odId;
-    @Column(name="CA_ID", unique = false, nullable = false)
+    @Column(name="CA_ID", unique = false, nullable = true)
     private Long caId;
+    @Column(name="PE_ID", unique = false, nullable = true)
+    private Long peId;
     @Column(name="NAME", unique = false, nullable = false)
     private String name;
     @Column(name="model", unique = false, nullable = false)

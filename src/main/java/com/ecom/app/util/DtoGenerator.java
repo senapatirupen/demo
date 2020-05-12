@@ -1,21 +1,36 @@
 package com.ecom.app.util;
 
+import com.ecom.app.entity.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.lang.reflect.Field;
 
 public class DtoGenerator {
 
     public static void main(String[] args) {
-        new DtoGenerator().printCustomizeSetterAndGetterToSetValue("com.ecom.app.entity.Vote",
-                "fromVote", "com.ecom.app.web.model.Vote",
-                "toVote");
-        new DtoGenerator().printCustomizeSetterAndGetterToSetValue("com.ecom.app.web.model.Vote",
-                "fromVote", "com.ecom.app.entity.Vote",
-                "toVote");
+//        new DtoGenerator().printCustomizeSetterAndGetterToSetValue("com.ecom.app.entity.Vote",
+//                "fromVote", "com.ecom.app.web.model.Vote",
+//                "toVote");
+//        new DtoGenerator().printCustomizeSetterAndGetterToSetValue("com.ecom.app.web.model.Vote",
+//                "fromVote", "com.ecom.app.entity.Vote",
+//                "toVote");
+
 //        new DtoGenerator().printClassStructureFromC1ToC2(packageName+"AuditLog");
 
 
 //        new DtoGenerator().forListOfClasses(new DtoGenerator().getFromClassNames("com.ecom.app.entity."));
 
+        new DtoGenerator().convertPojoToJson();
+    }
+
+    public void convertPojoToJson() {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            System.out.println(objectMapper.writeValueAsString(new Cart()));
+        } catch (JsonProcessingException e) {
+            System.out.println(" Error on conversion " + e.getMessage());
+        }
     }
 
     public void forListOfClasses(String[] classNames){

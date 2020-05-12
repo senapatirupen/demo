@@ -10,7 +10,7 @@ public class Order extends AuditLog {
     private Long odId;
     private Long peId;
     private String orderStatus;
-    private String isDelivered;
+    private Boolean isDelivered;
     private Collection<Product> products;
     private Date startDate;
     private Date endDate;

@@ -16,24 +16,24 @@ public class Shipping extends AuditLog {
     private Long shId;
     @Column(name = "PR_IDS")
     private String prIds;
-    @Column(name = "OD_ID", unique = false, nullable = false)
+    @Column(name = "OD_ID", unique = false, nullable = true)
     private Long odId;
-    @Column(name = "SHIPPING_STATUS", unique = false, nullable = false)
+    @Column(name = "SHIPPING_STATUS", unique = false, nullable = true)
     private String shippingStatus;
-    @Column(name = "PRODUCT_HEALTH_STATUS", unique = false, nullable = false)
+    @Column(name = "PRODUCT_HEALTH_STATUS", unique = false, nullable = true)
     private String productHealthStatus;
-    @Column(name = "PACKAGING_CHARGE", unique = false, nullable = false)
+    @Column(name = "PACKAGING_CHARGE", unique = false, nullable = true)
     private Float packagingCharge;
-    @Column(name="START_DATE", nullable = false, unique = false)
+    @Column(name="START_DATE", unique = false, nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
-    @Column(name="END_DATE", nullable = false, unique = false)
+    @Column(name="END_DATE", unique = false, nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
-    @Column(name = "EXPECTED_DATE", unique = false, nullable = false)
+    @Column(name = "EXPECTED_DATE", unique = false, nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date expectedDate;
-    @Column(name = "COURIER_PERSON", unique = false, nullable = false)
+    @Column(name = "COURIER_PERSON", unique = false, nullable = true)
     private String courierPerson;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="SHAD_ID")

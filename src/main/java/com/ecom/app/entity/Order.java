@@ -17,22 +17,22 @@ public class Order extends AuditLog {
     private Long odId;
     @Column(name="PE_ID")
     private Long peId;
-    @Column(name="ORDER_STATUS", unique = false, nullable = false)
+    @Column(name="ORDER_STATUS", unique = false, nullable = true)
     private String orderStatus;
-    @Column(name="IS_DELIVERED", unique = false, nullable = false)
-    private String isDelivered;
+    @Column(name="IS_DELIVERED", unique = false, nullable = true)
+    private Boolean isDelivered;
+    @Column(name="START_DATE", unique = false, nullable = true)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startDate;
+    @Column(name="END_DATE", unique = false, nullable = true)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endDate;
+    @Column(name = "EXPECTED_DATE", unique = false, nullable = true)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date expectedDate;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="OD_ID")
     private Collection<Product> products;
-    @Column(name="START_DATE", nullable = false, unique = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startDate;
-    @Column(name="END_DATE", nullable = false, unique = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date endDate;
-    @Column(name = "EXPECTED_DATE", unique = false, nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date expectedDate;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="OD_ID")
     private Collection<Shipping> shippings;
@@ -42,4 +42,7 @@ public class Order extends AuditLog {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="PA_ID")
     private Payment payment;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="BIAD_ID")
+    private BillingAddress billingAddress;
 }

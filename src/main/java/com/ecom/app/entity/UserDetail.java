@@ -1,11 +1,8 @@
 package com.ecom.app.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -29,6 +26,8 @@ public class UserDetail extends AuditLog {
     private String phoneNumber;
     @Column(name = "PASSWORD", unique = false, nullable = false)
     private String password;
+    @Column(name = "RE_PASSWORD", unique = false, nullable = false)
+    private String rePassword;
     @Column(name = "DOB", unique = false, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dob;
