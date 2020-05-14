@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name="DELIVERY_ADDRESS")
+@Table(name="BILLING_ADDRESS")
 @Data
 public class BillingAddress extends AuditLog {
     private static final long serialVersionUID=1L;

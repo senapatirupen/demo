@@ -1,9 +1,6 @@
 package com.ecom.app.service;
 
-import com.ecom.app.entity.Cart;
-import com.ecom.app.entity.DeliveryAddress;
-import com.ecom.app.entity.Order;
-import com.ecom.app.entity.Product;
+import com.ecom.app.entity.*;
 
 import java.util.Collection;
 
@@ -21,5 +18,8 @@ public interface OrderManagementService {
     public Order addBillingAddressToOrder(String userName, Long orderId);
     public Order addShippingAndDeliveryAndDeliveryAddressToOrder(String userName, Long orderId, Long addressId,
                                                                  DeliveryAddress deliveryAddress);
+    public Order addShippingAndReturnAndReturnAddressToOrder(String userName, Long orderId, Long addressId,
+                                                             ReturnAddress returnAddress);
+    public Order addPaymentToOrder(String userName, Long orderId);
 
 }

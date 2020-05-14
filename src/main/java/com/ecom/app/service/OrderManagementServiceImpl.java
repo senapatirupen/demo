@@ -7,9 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -30,7 +29,11 @@ public class OrderManagementServiceImpl implements OrderManagementService {
     @Autowired
     DeliveryRepository deliveryRepository;
     @Autowired
+    ReturnRepository returnRepository;
+    @Autowired
     ShippingRepository shippingRepository;
+    @Autowired
+    PaymentRepository paymentRepository;
 
     @Override
     public Cart createCartByUserName(String userName, Cart cart) {
@@ -107,10 +110,28 @@ public class OrderManagementServiceImpl implements OrderManagementService {
     }
 
     @Override
+    public Order addPaymentToOrder(String userName, Long orderId) {
+        Person person = personRepository.findByUserName(userName);
+        Order order = orderRepository.findById(orderId).get();
+        Payment payment = new Payment();
+        Float totalAmount = 0f;
+        List<Float> sellPrice = order.getProducts().stream().map(product -> product.getSellPrice()).collect(Collectors.toList());
+        ListIterator<Float> listIterator = sellPrice.listIterator();
+        while(listIterator.hasNext()) {
+            totalAmount += listIterator.next();
+        }
+        payment.setPrice(totalAmount);
+        paymentRepository.save(payment);
+        order.setPayment(payment);
+        orderRepository.save(order);
+        return order;
+    }
+
+    @Override
     public Order addBillingAddressToOrder(String userName, Long orderId) {
         Person person = personRepository.findByUserName(userName);
-        Order order = orderRepository.findOrderByPersonId(person.getPeId());
-        Address address = addressRepository.findByType("BILLING");
+        Order order = orderRepository.findById(orderId).get();
+        Address address = addressRepository.findByType(person.getPeId(), "BILLING");
         BillingAddress billingAddress = new BillingAddress();
         billingAddress.setZipcode(address.getZipcode());
         billingAddress.setOdId(orderId);
@@ -133,13 +154,42 @@ public class OrderManagementServiceImpl implements OrderManagementService {
         Shipping shipping = new Shipping();
         Delivery delivery = new Delivery();
         delivery.setDeliveryAddress(deliveryAddress);
+        delivery.setDeliveryStatus("OPEN");
         deliveryRepository.save(delivery);
         shipping.setDelivery(delivery);
         shipping.setOdId(orderId);
+        shipping.setShippingStatus("OPEN");
         shippingRepository.save(shipping);
         delivery.setShId(shipping.getShId());
         setShippingForOrder(order, shipping);
         deliveryRepository.save(delivery);
+        orderRepository.save(order);
+        return order;
+    }
+
+    @Override
+    public Order addShippingAndReturnAndReturnAddressToOrder(String userName, Long orderId, Long addressId,
+                                                                 ReturnAddress returnAddress) {
+        Person person = personRepository.findByUserName(userName);
+        Order order = orderRepository.findOrderByPersonId(person.getPeId());
+        if(null != addressId) {
+            Address address = addressRepository.findById(addressId).get();
+            returnAddress.setZipcode(address.getZipcode());
+            returnAddress.setType("PICKUP");
+        }
+        Shipping shipping = new Shipping();
+        Return aReturn = new Return();
+        aReturn.setReturnAddress(returnAddress);
+        aReturn.setReturnStatus("OPEN");
+        returnRepository.save(aReturn);
+        shipping.setAreturn(aReturn);
+        shipping.setOdId(orderId);
+        shipping.setShippingStatus("OPEN");
+        shippingRepository.save(shipping);
+        aReturn.setShId(shipping.getShId());
+        setShippingForOrder(order, shipping);
+        returnRepository.save(aReturn);
+        orderRepository.save(order);
         return order;
     }
 
@@ -217,12 +267,12 @@ public class OrderManagementServiceImpl implements OrderManagementService {
     }
 
     private Order setShippingForOrder(Order order, Shipping shipping){
-        if(!CollectionUtils.isEmpty(order.getShippings())){
-            order.getShippings().add(shipping);
+        if(!CollectionUtils.isEmpty(order.getShipping())){
+            order.getShipping().add(shipping);
         } else {
             Set<Shipping> shippingSet = new HashSet<Shipping>();
             shippingSet.add(shipping);
-            order.setShippings(shippingSet);
+            order.setShipping(shippingSet);
         }
         return order;
     }

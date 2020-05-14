@@ -27,8 +27,8 @@ public class DeliveryAddress extends AuditLog {
     private String state;
     @Column(name="CITY_VILLAGE", unique = false, nullable = true)
     private String cityVillage;
-    @Column(name="ZIPCODE", unique = false, nullable = true)
+    @Column(name="ZIPCODE", unique = false, nullable = false)
     private String zipcode;
-    @Column(name="TYPE", unique = false, nullable = true)
+    @Column(name="TYPE", unique = false, nullable = false)
     private String type;
 }

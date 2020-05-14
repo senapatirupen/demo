@@ -13,14 +13,14 @@ public class Payment extends AuditLog {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="PA_ID", insertable = false, updatable = false, nullable = false)
     private Long paId;
-    @Column(name="NAME", unique = false, nullable = false)
+    @Column(name="NAME", unique = false, nullable = true)
     private String name;
-    @Column(name="PRICE", unique = false, nullable = false)
+    @Column(name="PRICE", unique = false, nullable = true)
     private Float price;
-    @Column(name="OFFER_PERCENTAGE", unique = false, nullable = false)
+    @Column(name="OFFER_PERCENTAGE", unique = false, nullable = true)
     private Float offerPercentage;
-    @Column(name="PAYMENT_STATUS", unique = false, nullable = false)
+    @Column(name="PAYMENT_STATUS", unique = false, nullable = true)
     private String paymentStatus;
-    @Column(name="TYPE", unique = false, nullable = false)
+    @Column(name="TYPE", unique = false, nullable = true)
     private String type;
 }

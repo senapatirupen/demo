@@ -18,7 +18,7 @@ public class Shipping extends AuditLog {
     private String prIds;
     @Column(name = "OD_ID", unique = false, nullable = true)
     private Long odId;
-    @Column(name = "SHIPPING_STATUS", unique = false, nullable = true)
+    @Column(name = "SHIPPING_STATUS", unique = false, nullable = false)
     private String shippingStatus;
     @Column(name = "PRODUCT_HEALTH_STATUS", unique = false, nullable = true)
     private String productHealthStatus;
@@ -40,4 +40,6 @@ public class Shipping extends AuditLog {
     private ShippingAddress shippingAddress;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Delivery delivery;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Return areturn;
 }

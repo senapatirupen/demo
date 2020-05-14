@@ -106,30 +106,37 @@ public class ProductMgmtEntityController {
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/addproducttocartbyname/{userName}")
+    @PutMapping(value = "/addproducttocartbyname/{userName}")
     public ResponseEntity<Cart> addProductToCart(@PathVariable String userName, @RequestParam String productName) {
         Cart cart  = orderManagementService.addProductToCartByNameForUserName(userName, productName);
         displayObjectAsJson(cart);
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/createorderbyproductname/{userName}")
+    @PostMapping(value = "/createorderbyproductname/{userName}")
     public ResponseEntity<Order> createProduct(@PathVariable String userName, @RequestParam String productName ) {
         Order order  = orderManagementService.createOrderByProductNameByUserName(userName, productName);
         displayObjectAsJson(order);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/transferproductfromcarttoorder/{userName}")
+    @PutMapping(value = "/transferproductfromcarttoorder/{userName}")
     public ResponseEntity<Collection<Order>> transferProductFromCartToOrder(@PathVariable String userName) {
         Collection<Order> orders  = orderManagementService.createOrderByTransferProductFromCartToOrderByUserName(userName);
         displayObjectAsJson(orders);
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/addbillingaddresstoorder/{userName}")
+    @PutMapping(value = "/addbillingaddresstoorder/{userName}")
     public ResponseEntity<Order> addBillingAddressToOrder(@PathVariable String userName, @RequestParam Long orderId) {
         Order order  = orderManagementService.addBillingAddressToOrder(userName, orderId);
+        displayObjectAsJson(order);
+        return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/addpaymenttoorder/{userName}")
+    public ResponseEntity<Order> addPaymentToOrder(@PathVariable String userName, @RequestParam Long orderId) {
+        Order order  = orderManagementService.addPaymentToOrder(userName, orderId);
         displayObjectAsJson(order);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
@@ -137,6 +144,13 @@ public class ProductMgmtEntityController {
     @PutMapping(value = "/addshippinganddeliveryanddeliveryaddresstoorder/{userName}")
     public ResponseEntity<Order> addShippingAndDeliveryAndDeliveryAddressToOrder(@PathVariable String userName, @RequestParam Long orderId, @RequestParam Long addressId, @RequestBody DeliveryAddress deliveryAddress) {
         Order order  = orderManagementService.addShippingAndDeliveryAndDeliveryAddressToOrder(userName, orderId, addressId, deliveryAddress);
+        displayObjectAsJson(order);
+        return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/addshippingandreturnandreturnaddresstoorder/{userName}")
+    public ResponseEntity<Order> addShippingAndReturnAndReturnAddressToOrder(@PathVariable String userName, @RequestParam Long orderId, @RequestParam Long addressId, @RequestBody ReturnAddress returnAddress) {
+        Order order  = orderManagementService.addShippingAndReturnAndReturnAddressToOrder(userName, orderId, addressId, returnAddress);
         displayObjectAsJson(order);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }

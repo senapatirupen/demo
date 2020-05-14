@@ -14,23 +14,23 @@ public class Return extends AuditLog {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="RE_ID", insertable = false, updatable = false, nullable = false)
     private Long reId;
-    @Column(name="OD_ID")
-    private Long odId;
-    @Column(name="PR_IDS")
+    @Column(name = "PR_IDS")
     private String prIds;
-    @Column(name="START_DATE", nullable = false, unique = false)
+    @Column(name = "SH_ID", unique = false, nullable = true)
+    private Long shId;
+    @Column(name="START_DATE", unique = false, nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
-    @Column(name="END_DATE", nullable = false, unique = false)
+    @Column(name="END_DATE", unique = false, nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
-    @Column(name = "EXPECTED_DATE", unique = false, nullable = false)
+    @Column(name = "EXPECTED_DATE", unique = false, nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date expectedDate;
     @Column(name="RETURN_STATUS", unique = false, nullable = false)
     private String returnStatus;
-    @Column(name="IS_RETURNED", unique = false, nullable = false)
-    private String isReturned;
+    @Column(name="IS_RETURNED", unique = false, nullable = true)
+    private Boolean isReturned;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="READ_ID")
     private ReturnAddress returnAddress;

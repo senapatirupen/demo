@@ -35,10 +35,7 @@ public class Order extends AuditLog {
     private Collection<Product> products;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="OD_ID")
-    private Collection<Shipping> shippings;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="OD_ID")
-    private Collection<Return> returns;
+    private Collection<Shipping> shipping;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="PA_ID")
     private Payment payment;
