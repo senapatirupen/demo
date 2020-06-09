@@ -1,10 +1,16 @@
 package com.ecom.app.web.model;
 
 import com.ecom.app.entity.UserDetail;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Collection;
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Person extends AuditLog {
     private static final long serialVersionUID=1L;
     private Long peId;

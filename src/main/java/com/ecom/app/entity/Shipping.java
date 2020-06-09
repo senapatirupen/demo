@@ -1,6 +1,9 @@
 package com.ecom.app.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,10 +11,13 @@ import java.util.Date;
 @Entity
 @Table(name = "SHIPPING")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Shipping extends AuditLog {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SH_ID", insertable = false, updatable = false, nullable = false)
     private Long shId;
     @Column(name = "PR_IDS")

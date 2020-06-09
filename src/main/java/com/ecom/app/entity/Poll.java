@@ -1,6 +1,9 @@
 package com.ecom.app.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -13,10 +16,13 @@ import java.util.Set;
 @Entity
 @Table(name="POLL")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Poll implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="POLL_ID")
     private Long id;
     @Column(name="QUESTION")

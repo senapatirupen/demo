@@ -2,28 +2,44 @@ package com.ecom.app.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
 @Data
+@MappedSuperclass
 public class AuditLog implements Serializable {
-    private static final long serialVersionUID=1L;
-    @Column(name="CREATED_BY", nullable = false, unique = false)
-    private String createdBy;
-    @Column(name="CREATED_DATE", nullable = false, unique = false)
+    private static final long serialVersionUID = 1L;
+    @Column(name = "CREATED_BY", nullable = false, unique = false)
+    protected String createdBy;
+    @Column(name = "CREATED_DATE", nullable = false, unique = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-    @Column(name="LAST_MODIFIED_BY", nullable = false, unique = false)
-    private String lastModifiedBy;
-    @Column(name="LAST_MODIFIED_DATE", nullable = false, unique = false)
+    protected Date createdDate;
+    @Column(name = "LAST_MODIFIED_BY", nullable = false, unique = false)
+    protected String lastModifiedBy;
+    @Column(name = "LAST_MODIFIED_DATE", nullable = false, unique = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
-    @Column(name="IS_ACTIVE", nullable = false, unique = false)
-    private Boolean isActive;
-    @Column(name="DESC", nullable = false, unique = false)
-    private String desc;
-    @Column(name="STATUS", nullable = false, unique = false)
-    private String status;
+    protected Date lastModifiedDate;
+    @Column(name = "IS_ACTIVE", nullable = false, unique = false)
+    protected Boolean isActive;
+    @Column(name = "DESC", nullable = false, unique = false)
+    protected String desc;
+    @Column(name = "STATUS", nullable = false, unique = false)
+    protected String status;
+
+    @PrePersist
+    public void onPrePersist() {
+        setCreatedBy("Rupen");
+        setCreatedDate(new Date());
+        setLastModifiedBy("Rupen");
+        setLastModifiedDate(new Date());
+        setIsActive(true);
+        setDesc("Init");
+        setStatus("Active");
+    }
+
+    @PreUpdate
+    public void onPreUpdate() {
+        setLastModifiedDate(new Date());
+    }
 }

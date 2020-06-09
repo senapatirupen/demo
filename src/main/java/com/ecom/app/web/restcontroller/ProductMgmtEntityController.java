@@ -113,6 +113,13 @@ public class ProductMgmtEntityController {
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 
+    @PutMapping(value = "/removeproductfromcartbyname/{userName}")
+    public ResponseEntity<Cart> removeProductFromCart(@PathVariable String userName, @RequestParam String productName, @RequestParam Long cartId) {
+        Cart cart  = orderManagementService.removeProductFromCartByNameForUserName(userName, productName, cartId);
+        displayObjectAsJson(cart);
+        return new ResponseEntity<>(cart, HttpStatus.OK);
+    }
+
     @PostMapping(value = "/createorderbyproductname/{userName}")
     public ResponseEntity<Order> createProduct(@PathVariable String userName, @RequestParam String productName ) {
         Order order  = orderManagementService.createOrderByProductNameByUserName(userName, productName);

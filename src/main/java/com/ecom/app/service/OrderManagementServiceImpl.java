@@ -77,11 +77,29 @@ public class OrderManagementServiceImpl implements OrderManagementService {
     }
 
     @Override
-    public Cart addProductToCartByNameForUserName(String userName, String name) {
+    public Cart addProductToCartByNameForUserName(String userName, String productName) {
         Person person = personRepository.findByUserName(userName);
         Cart cart = person.getCart();
-        Product product = productRepository.findByName(name);
+        Product product = productRepository.findByName(productName);
         setProductForCart(cart, product);
+        cartRepository.save(cart);
+        return cart;
+    }
+
+    @Override
+    public Cart removeProductFromCartByNameForUserName(String userName, String productName, Long cartId) {
+        Person person = personRepository.findByUserName(userName);
+        Cart cart = person.getCart();
+
+//        Product product = productRepository.findByName(productName);
+//        Product product = productRepository.findProductByCartId(cart.getCaId());
+//        product.setCaId(null);
+//        productRepository.save(product);
+        Product product = cart.getProducts().stream().filter(p -> p.getName() == productName).distinct().findAny().get();
+        cart.getProducts().remove(product);
+//        Cart cart = personRepository.findCartByUserName(userName);
+//        cartRepository.findProduct
+//        setProductForCart(cart, product);
         cartRepository.save(cart);
         return cart;
     }

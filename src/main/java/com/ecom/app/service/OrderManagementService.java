@@ -12,6 +12,7 @@ public interface OrderManagementService {
     public Product getProductByName(String name);
     public Cart addProductToCartWithProductByUserName(String userName, Product product);
     public Cart addProductToCartByNameForUserName(String userName, String name);
+    public Cart removeProductFromCartByNameForUserName(String userName, String productName, Long cartId);
     public Collection<Order> createOrderByTransferProductFromCartToOrderByUserName(String userName);
     public Order createOrderByProductNameByUserName(String userName, String productName);
     public Collection<Order> getOrderByUserName(String userName);

@@ -1,16 +1,22 @@
 package com.ecom.app.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="SHIPPING_ADDRESS")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ShippingAddress extends AuditLog {
     private static final long serialVersionUID=1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="SHAD_ID", insertable = false, updatable = false, nullable = false)
     private Long shadId;
     @Column(name="SH_ID")

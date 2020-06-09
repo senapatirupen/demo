@@ -1,6 +1,9 @@
 package com.ecom.app.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,12 +11,15 @@ import java.util.Date;
 @Entity
 @Table(name="PRODUCT_INVENTORY")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductForInventory extends AuditLog {
     private static final long serialVersionUID=1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="PR_ID", insertable = false, updatable = false, nullable = false)
-    private Long prId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="PRIN_ID", insertable = false, updatable = false, nullable = false)
+    private Long prinId;
     @Column(name="NAME", unique = false, nullable = false)
     private String name;
     @Column(name="MODEL", unique = false, nullable = false)
@@ -36,9 +42,9 @@ public class ProductForInventory extends AuditLog {
     @JoinColumn(name="ST_ID")
     private Stock stock;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="PR_DE_ID")
+    @JoinColumn(name="PRDE_ID")
     private ProductDescription productDescription;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="PR_SP_ID")
+    @JoinColumn(name="PRSP_ID")
     private ProductSpecification productSpecification;
 }

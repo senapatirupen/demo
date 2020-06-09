@@ -1,7 +1,10 @@
 package com.ecom.app.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -10,10 +13,13 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name = "USERS")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User extends AuditLog {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
     private Long id;
     @Column(name="USERNAME")

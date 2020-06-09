@@ -3,7 +3,6 @@ package com.ecom.app.repository;
 import com.ecom.app.entity.Address;
 import com.ecom.app.entity.Cart;
 import com.ecom.app.entity.Person;
-import org.neo4j.cypher.internal.compiler.v2_1.ast.Add;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

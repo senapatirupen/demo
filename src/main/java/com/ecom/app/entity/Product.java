@@ -1,16 +1,22 @@
 package com.ecom.app.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="PRODUCT")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product extends AuditLog {
     private static final long serialVersionUID=1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="PR_ID", insertable = false, updatable = false, nullable = false)
     private Long prId;
     @Column(name="OD_ID", unique = false, nullable = true)
@@ -34,6 +40,15 @@ public class Product extends AuditLog {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="FE_ID")
     private Feedback feedback;
+//    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinColumn(name="PRDE_ID")
+//    private ProductDescription productDescription;
+//    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinColumn(name="PRFE_ID")
+//    private ProductFeature productFeature;
+//    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinColumn(name="PRSP_ID")
+//    private ProductSpecification productSpecification;
     @Column(name="IS_STOCK_AVAILABLE", unique = false, nullable = false)
     private Boolean isStockAvailable;
 }

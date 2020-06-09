@@ -118,6 +118,8 @@ public class UserInteractionServiceImpl implements UserInteractionService {
         if (!valid) {
             userDetail.setCreatedBy(userDetail.getUserName());
             userDetail.setCreatedDate(new Date());
+            userDetail.setLastModifiedBy(userDetail.getUserName());
+            userDetail.setLastModifiedDate(new Date());
             userDetail.setIsActive(true);
             userDetail.setDesc("new user entry");
             userDetail.setStatus("Active");
