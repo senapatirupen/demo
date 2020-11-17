@@ -164,7 +164,7 @@ public class ProductMgmtEntityController {
 
     private void displayObjectAsJson(Object obj) {
         try{
-            log.info("object as json >>>>> {}",objectMapper.writeValueAsString(obj));
+            log.info("object as json >>>>>> {}",objectMapper.writeValueAsString(obj));
         } catch (JsonProcessingException e){
             log.error(e.getMessage(), e);
         }
