@@ -38,6 +38,7 @@ public class AuditLog implements Serializable {
         setStatus("Active");
     }
 
+    @PreRemove
     @PreUpdate
     public void onPreUpdate() {
         setLastModifiedDate(new Date());
