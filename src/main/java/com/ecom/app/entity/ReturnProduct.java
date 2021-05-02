@@ -1,5 +1,6 @@
 package com.ecom.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,12 +10,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="RETURN")
+@Table(name="RETURN_PRODUCT")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Return extends AuditLog {
+public class ReturnProduct extends AuditLog {
     private static final long serialVersionUID=1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,5 +40,6 @@ public class Return extends AuditLog {
     private Boolean isReturned;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="READ_ID")
+    @JsonIgnore
     private ReturnAddress returnAddress;
 }

@@ -16,6 +16,5 @@ public class AuditLog implements Serializable {
     private String lastModifiedBy;
     private Date lastModifiedDate;
     private Boolean isActive;
-    private String desc;
     private String status;
 }

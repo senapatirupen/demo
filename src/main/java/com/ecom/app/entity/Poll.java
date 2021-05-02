@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name="POLL")
@@ -32,12 +31,12 @@ public class Poll implements Serializable {
     @JoinColumn(name="POLL_ID")
     @OrderBy
     @Size(min=2, max=6)
-    private List<Option> options;
+    private List<Opt> opts;
 
-    public List<com.ecom.app.entity.Option> getDefaultOptions() {
-        if (this.options == null) {
-            this.options = new ArrayList<com.ecom.app.entity.Option>();
+    public List<Opt> getDefaultOptions() {
+        if (this.opts == null) {
+            this.opts = new ArrayList<Opt>();
         }
-        return this.options;
+        return this.opts;
     }
 }

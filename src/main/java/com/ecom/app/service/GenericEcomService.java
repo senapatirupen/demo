@@ -119,15 +119,15 @@ public interface GenericEcomService {
 
     Boolean existsProductById(Long id);
 
-    Collection<Return> findAllReturn();
+    Collection<ReturnProduct> findAllReturn();
 
-    Optional<Return> findReturnById(Long id);
+    Optional<ReturnProduct> findReturnById(Long id);
 
-    Return saveReturn(Return returns);
+    ReturnProduct saveReturn(ReturnProduct returns);
 
     void deleteReturn(Long id);
 
-    void deleteReturn(Return returns);
+    void deleteReturn(ReturnProduct returns);
 
     Boolean existsReturnById(Long id);
 

@@ -22,5 +22,5 @@ public class Vote implements Serializable {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "OPTION_ID")
-    private Option option;
+    private Opt opt;
 }

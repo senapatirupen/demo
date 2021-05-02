@@ -1,5 +1,6 @@
 package com.ecom.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,11 +41,14 @@ public class ProductForInventory extends AuditLog {
     private String productForInventoryStatus;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="ST_ID")
+    @JsonIgnore
     private Stock stock;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="PRDE_ID")
+    @JsonIgnore
     private ProductDescription productDescription;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="PRSP_ID")
+    @JsonIgnore
     private ProductSpecification productSpecification;
 }

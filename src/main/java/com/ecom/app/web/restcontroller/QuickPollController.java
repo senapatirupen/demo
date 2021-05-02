@@ -9,7 +9,6 @@ import com.ecom.app.service.QuickPollService;
 import com.ecom.app.web.model.Poll;
 import com.ecom.app.web.model.Vote;
 import lombok.extern.slf4j.Slf4j;
-import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.springframework.http.HttpHeaders;
@@ -122,11 +121,11 @@ public class QuickPollController {
         for (com.ecom.app.entity.Vote v : allVotes) {
             totalVotes++;
             // Get the OptionCount corresponding to this Option
-            OptionCount optionCount = tempMap.get(v.getOption().getId());
+            OptionCount optionCount = tempMap.get(v.getOpt().getId());
             if (optionCount == null) {
                 optionCount = new OptionCount();
-                optionCount.setOptionId(v.getOption().getId());
-                tempMap.put(v.getOption().getId(), optionCount);
+                optionCount.setOptionId(v.getOpt().getId());
+                tempMap.put(v.getOpt().getId(), optionCount);
             }
             optionCount.setCount(optionCount.getCount() + 1);
         }

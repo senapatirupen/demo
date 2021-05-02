@@ -1,5 +1,6 @@
 package com.ecom.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,8 +45,10 @@ public class Order extends AuditLog {
     private Collection<Shipping> shipping;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="PA_ID")
+    @JsonIgnore
     private Payment payment;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="BIAD_ID")
+    @JsonIgnore
     private BillingAddress billingAddress;
 }

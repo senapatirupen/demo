@@ -121,7 +121,6 @@ public class UserInteractionServiceImpl implements UserInteractionService {
             userDetail.setLastModifiedBy(userDetail.getUserName());
             userDetail.setLastModifiedDate(new Date());
             userDetail.setIsActive(true);
-            userDetail.setDesc("new user entry");
             userDetail.setStatus("Active");
             userDetail.setDob(dateUtil.dateToDate(userDetail.getDob()));
             newUserDetail = userDetailRepository.save(userDetail);

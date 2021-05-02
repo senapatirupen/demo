@@ -8,7 +8,6 @@ public class AuditLogTransformer {
         toAuditLog.setLastModifiedBy(fromAuditLog.getLastModifiedBy());
         toAuditLog.setLastModifiedDate(fromAuditLog.getLastModifiedDate());
         toAuditLog.setIsActive(fromAuditLog.getIsActive());
-        toAuditLog.setDesc(fromAuditLog.getDesc());
         toAuditLog.setStatus(fromAuditLog.getStatus());
         return toAuditLog;
     }
@@ -20,7 +19,6 @@ public class AuditLogTransformer {
         toAuditLog.setLastModifiedBy(fromAuditLog.getLastModifiedBy());
         toAuditLog.setLastModifiedDate(fromAuditLog.getLastModifiedDate());
         toAuditLog.setIsActive(fromAuditLog.getIsActive());
-        toAuditLog.setDesc(fromAuditLog.getDesc());
         toAuditLog.setStatus(fromAuditLog.getStatus());
         return toAuditLog;
     }

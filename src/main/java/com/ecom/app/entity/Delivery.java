@@ -1,5 +1,6 @@
 package com.ecom.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,5 +45,6 @@ public class Delivery extends AuditLog {
     private Boolean isDelivered;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="DEAD_ID")
+    @JsonIgnore
     private DeliveryAddress deliveryAddress;
 }

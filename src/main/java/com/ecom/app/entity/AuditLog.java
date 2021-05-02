@@ -22,8 +22,6 @@ public class AuditLog implements Serializable {
     protected Date lastModifiedDate;
     @Column(name = "IS_ACTIVE", nullable = false, unique = false)
     protected Boolean isActive;
-    @Column(name = "DESC", nullable = false, unique = false)
-    protected String desc;
     @Column(name = "STATUS", nullable = false, unique = false)
     protected String status;
 
@@ -34,7 +32,6 @@ public class AuditLog implements Serializable {
         setLastModifiedBy("Rupen");
         setLastModifiedDate(new Date());
         setIsActive(true);
-        setDesc("Init");
         setStatus("Active");
     }
 

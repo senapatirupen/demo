@@ -325,17 +325,17 @@ public class GenericEcomServiceImpl implements GenericEcomService {
     }
 
     @Override
-    public Collection<Return> findAllReturn() {
+    public Collection<ReturnProduct> findAllReturn() {
         return returnRepository.findAll();
     }
 
     @Override
-    public Optional<Return> findReturnById(Long id) {
+    public Optional<ReturnProduct> findReturnById(Long id) {
         return returnRepository.findById(id);
     }
 
     @Override
-    public Return saveReturn(Return returns) {
+    public ReturnProduct saveReturn(ReturnProduct returns) {
         return returnRepository.save(returns);
     }
 
@@ -345,7 +345,7 @@ public class GenericEcomServiceImpl implements GenericEcomService {
     }
 
     @Override
-    public void deleteReturn(Return returns) {
+    public void deleteReturn(ReturnProduct returns) {
         returnRepository.delete(returns);
     }
 

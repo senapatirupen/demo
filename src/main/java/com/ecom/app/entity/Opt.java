@@ -9,12 +9,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "OPTION")
+@Table(name = "OPT")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Option implements Serializable {
+public class Opt implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

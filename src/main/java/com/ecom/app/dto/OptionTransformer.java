@@ -1,20 +1,21 @@
 package com.ecom.app.dto;
 
+import com.ecom.app.entity.Opt;
 import org.springframework.stereotype.Component;
 
 @Component
 public class OptionTransformer {
 
-    public com.ecom.app.web.model.Option transfer(com.ecom.app.entity.Option fromOption){
+    public com.ecom.app.web.model.Option transfer(Opt fromOpt){
         com.ecom.app.web.model.Option toOption = new com.ecom.app.web.model.Option();
-        toOption.setId(fromOption.getId());
-        toOption.setValue(fromOption.getValue());
+        toOption.setId(fromOpt.getId());
+        toOption.setValue(fromOpt.getValue());
         return toOption;
     }
-    public com.ecom.app.entity.Option transfer(com.ecom.app.web.model.Option fromOption){
-        com.ecom.app.entity.Option toOption = new com.ecom.app.entity.Option();
-        toOption.setId(fromOption.getId());
-        toOption.setValue(fromOption.getValue());
-        return toOption;
+    public Opt transfer(com.ecom.app.web.model.Option fromOption){
+        Opt toOpt = new Opt();
+        toOpt.setId(fromOption.getId());
+        toOpt.setValue(fromOption.getValue());
+        return toOpt;
     }
 }

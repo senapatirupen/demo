@@ -5,7 +5,6 @@ import com.ecom.app.entity.Vote;
 import com.ecom.app.repository.OptionRepository;
 import com.ecom.app.repository.PollRepository;
 import com.ecom.app.repository.VoteRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +54,7 @@ public class QuickPollServiceImpl implements QuickPollService {
     @Override
     public Vote createVote(Vote vote){
         log.info("Vote detail >> "+ vote.toString());
-        optionRepository.save(vote.getOption());
+        optionRepository.save(vote.getOpt());
         return voteRepository.save(vote);
     }
 

@@ -1,5 +1,6 @@
 package com.ecom.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -43,9 +44,12 @@ public class Shipping extends AuditLog {
     private String courierPerson;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="SHAD_ID")
+    @JsonIgnore
     private ShippingAddress shippingAddress;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private Delivery delivery;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Return areturn;
+    @JsonIgnore
+    private ReturnProduct areturn;
 }

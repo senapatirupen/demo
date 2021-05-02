@@ -5,7 +5,6 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
 import java.util.stream.Collectors;
 
 @Component
@@ -19,7 +18,7 @@ public class PollTransformer {
         com.ecom.app.web.model.Poll toPoll = new com.ecom.app.web.model.Poll();
         toPoll.setId(fromPoll.getId());
         toPoll.setQuestion(fromPoll.getQuestion());
-        toPoll.getDefaultOptions().addAll(fromPoll.getOptions().stream().map(fromOption ->
+        toPoll.getDefaultOptions().addAll(fromPoll.getOpts().stream().map(fromOption ->
                 optionTransformer.transfer(fromOption)).collect(Collectors.toList()));
         return toPoll;
     }

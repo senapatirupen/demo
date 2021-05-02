@@ -196,17 +196,17 @@ public class OrderManagementServiceImpl implements OrderManagementService {
             returnAddress.setType("PICKUP");
         }
         Shipping shipping = new Shipping();
-        Return aReturn = new Return();
-        aReturn.setReturnAddress(returnAddress);
-        aReturn.setReturnStatus("OPEN");
-        returnRepository.save(aReturn);
-        shipping.setAreturn(aReturn);
+        ReturnProduct aReturnProduct = new ReturnProduct();
+        aReturnProduct.setReturnAddress(returnAddress);
+        aReturnProduct.setReturnStatus("OPEN");
+        returnRepository.save(aReturnProduct);
+        shipping.setAreturn(aReturnProduct);
         shipping.setOdId(orderId);
         shipping.setShippingStatus("OPEN");
         shippingRepository.save(shipping);
-        aReturn.setShId(shipping.getShId());
+        aReturnProduct.setShId(shipping.getShId());
         setShippingForOrder(order, shipping);
-        returnRepository.save(aReturn);
+        returnRepository.save(aReturnProduct);
         orderRepository.save(order);
         return order;
     }
