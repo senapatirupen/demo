@@ -99,11 +99,25 @@ public class ProductMgmtEntityController {
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
+    @PostMapping(value = "/updateproduct")
+    public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
+        product  = orderManagementService.createProduct(product);
+        displayObjectAsJson(product);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
     @GetMapping(value = "/getproduct/{productName}")
     public ResponseEntity<Product> getProduct(@PathVariable String productName) {
         Product product  = orderManagementService.getProductByName(productName);
         displayObjectAsJson(product);
         return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/viewallproducts")
+    public ResponseEntity<Collection<Product>> viewAllProducts() {
+        Collection<Product> products  = orderManagementService.viewAllProducts();
+        displayObjectAsJson(products);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
     @PostMapping(value = "/addproducttocart/{userName}")
@@ -114,7 +128,7 @@ public class ProductMgmtEntityController {
     }
 
     @PutMapping(value = "/addproducttocartbyname/{userName}")
-    public ResponseEntity<Cart> addProductToCart(@PathVariable String userName, @RequestParam String productName) {
+    public ResponseEntity<Cart> addProductToCartByName(@PathVariable String userName, @RequestParam String productName) {
         Cart cart  = orderManagementService.addProductToCartByNameForUserName(userName, productName);
         displayObjectAsJson(cart);
         return new ResponseEntity<>(cart, HttpStatus.OK);

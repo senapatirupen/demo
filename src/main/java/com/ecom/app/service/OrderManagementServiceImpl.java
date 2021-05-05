@@ -73,6 +73,12 @@ public class OrderManagementServiceImpl implements OrderManagementService {
     }
 
     @Override
+    public Collection<Product> viewAllProducts() {
+        Collection<Product> products = productRepository.findAll();
+        return products;
+    }
+
+    @Override
     public Cart addProductToCartWithProductByUserName(String userName, Product product) {
         Cart cart = personRepository.findCartByUserName(userName);
         setProductForCart(cart, product);
