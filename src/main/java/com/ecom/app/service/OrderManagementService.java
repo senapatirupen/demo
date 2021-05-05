@@ -3,6 +3,7 @@ package com.ecom.app.service;
 import com.ecom.app.entity.*;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface OrderManagementService {
 
@@ -19,8 +20,23 @@ public interface OrderManagementService {
     public Order addBillingAddressToOrder(String userName, Long orderId);
     public Order addShippingAndDeliveryAndDeliveryAddressToOrder(String userName, Long orderId, Long addressId,
                                                                  DeliveryAddress deliveryAddress);
+
+    Order addShippingAddressToShippingForOrder(String userName, Long orderId, Long shippingId,
+                                               ShippingAddress shippingAddress);
+
+    Order setDeliverAndShippingAsDoneForOrder(String userName, Long orderId);
+
+    Order setPaymentAsDoneForOrder(String userName, Long orderId);
+
+    Order updateOrderAsDone(String userName, Long orderId);
+
     public Order addShippingAndReturnAndReturnAddressToOrder(String userName, Long orderId, Long addressId,
                                                              ReturnAddress returnAddress);
+
+    Collection<Order> removeProductFromOrderByIds(String userName, Long orderId, List<Long> productIds);
+
+    Collection<Order> viewProductsFromOrder(String userName, Long orderId);
+
     public Order addPaymentToOrder(String userName, Long orderId);
 
 }

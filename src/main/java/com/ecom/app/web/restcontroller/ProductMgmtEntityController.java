@@ -141,6 +141,20 @@ public class ProductMgmtEntityController {
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
+    @PutMapping(value = "/removeproductfromorderbyids/{userName}")
+    public ResponseEntity<Collection<Order>> removeproductfromorderbyids(@PathVariable String userName, @RequestParam Long orderId, @RequestParam List<Long> productIds) {
+        Collection<Order> orders  = orderManagementService.removeProductFromOrderByIds(userName, orderId, productIds);
+        displayObjectAsJson(orders);
+        return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/viewproductsfromorder/{userName}")
+    public ResponseEntity<Collection<Order>> viewproductsfromorder(@PathVariable String userName, @RequestParam Long orderId) {
+        Collection<Order> orders  = orderManagementService.viewProductsFromOrder(userName, orderId);
+        displayObjectAsJson(orders);
+        return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+
     @PutMapping(value = "/addbillingaddresstoorder/{userName}")
     public ResponseEntity<Order> addBillingAddressToOrder(@PathVariable String userName, @RequestParam Long orderId) {
         Order order  = orderManagementService.addBillingAddressToOrder(userName, orderId);
@@ -158,6 +172,34 @@ public class ProductMgmtEntityController {
     @PutMapping(value = "/addshippinganddeliveryanddeliveryaddresstoorder/{userName}")
     public ResponseEntity<Order> addShippingAndDeliveryAndDeliveryAddressToOrder(@PathVariable String userName, @RequestParam Long orderId, @RequestParam(required = false) Long addressId, @RequestBody DeliveryAddress deliveryAddress) {
         Order order  = orderManagementService.addShippingAndDeliveryAndDeliveryAddressToOrder(userName, orderId, addressId, deliveryAddress);
+        displayObjectAsJson(order);
+        return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/addshippingaddresstoshippingfororder/{userName}")
+    public ResponseEntity<Order> addShippingAddressToShippingForOrder(@PathVariable String userName, @RequestParam Long orderId, @RequestParam Long shippingId, @RequestBody ShippingAddress shippingAddress) {
+        Order order  = orderManagementService.addShippingAddressToShippingForOrder(userName, orderId, shippingId, shippingAddress);
+        displayObjectAsJson(order);
+        return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/setdeliveryandshippingasdonefororder/{userName}")
+    public ResponseEntity<Order> setDeliverAndShippingAsDoneForOrder(@PathVariable String userName, @RequestParam Long orderId) {
+        Order order  = orderManagementService.setDeliverAndShippingAsDoneForOrder(userName, orderId);
+        displayObjectAsJson(order);
+        return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/setpaymentasdonefororder/{userName}")
+    public ResponseEntity<Order> setPaymentAsDoneForOrder(@PathVariable String userName, @RequestParam Long orderId) {
+        Order order  = orderManagementService.setPaymentAsDoneForOrder(userName, orderId);
+        displayObjectAsJson(order);
+        return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/updateorderasdone/{userName}")
+    public ResponseEntity<Order> updateOrderAsDone(@PathVariable String userName, @RequestParam Long orderId) {
+        Order order  = orderManagementService.updateOrderAsDone(userName, orderId);
         displayObjectAsJson(order);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }

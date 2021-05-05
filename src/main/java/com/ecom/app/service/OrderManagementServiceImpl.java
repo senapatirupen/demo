@@ -27,6 +27,8 @@ public class OrderManagementServiceImpl implements OrderManagementService {
     @Autowired
     DeliveryAddressRepository deliveryAddressRepository;
     @Autowired
+    ShippingAddressRepository shippingAddressRepository;
+    @Autowired
     AddressRepository addressRepository;
     @Autowired
     DeliveryRepository deliveryRepository;
@@ -130,6 +132,28 @@ public class OrderManagementServiceImpl implements OrderManagementService {
     }
 
     @Override
+    public Collection<Order> removeProductFromOrderByIds(String userName, Long orderId, List<Long> productIds) {
+        Person person = personRepository.findByUserName(userName);
+        Order existOrder = orderRepository.findOrderByPersonId(person.getPeId(), orderId);
+        for(Long productId: productIds){
+            Product product = productRepository.findById(productId).get();
+            existOrder.getProducts().remove(product);
+        }
+        orderRepository.save(existOrder);
+        personRepository.save(person);
+        log.info("New Order >>>>> {}", existOrder.toString());
+        return person.getOrders();
+    }
+
+    @Override
+    public Collection<Order> viewProductsFromOrder(String userName, Long orderId) {
+        Person person = personRepository.findByUserName(userName);
+        Order existOrder = orderRepository.findOrderByPersonId(person.getPeId(), orderId);
+        return person.getOrders();
+    }
+
+
+    @Override
     public Order addPaymentToOrder(String userName, Long orderId) {
         Person person = personRepository.findByUserName(userName);
         Order order = orderRepository.findById(orderId).get();
@@ -199,6 +223,53 @@ public class OrderManagementServiceImpl implements OrderManagementService {
         delivery.setShId(shipping.getShId());
         setShippingForOrder(order, shipping);
         deliveryRepository.save(delivery);
+        orderRepository.save(order);
+        return order;
+    }
+
+    @Override
+    public Order addShippingAddressToShippingForOrder(String userName, Long orderId, Long shippingId,
+                                                      ShippingAddress shippingAddress) {
+        Person person = personRepository.findByUserName(userName);
+        Order order = orderRepository.findOrderByPersonId(person.getPeId(), orderId);
+        Shipping shipping = shippingRepository.findById(shippingId).get();
+        shippingAddress.setShId(shippingId);
+        ShippingAddress shippingAddress1 = shippingAddressRepository.save(shippingAddress);
+        shipping.setShippingAddress(shippingAddress1);
+        shipping.setStatus("START");
+        shippingRepository.save(shipping);
+        return order;
+    }
+
+    @Override
+    public Order setDeliverAndShippingAsDoneForOrder(String userName, Long orderId) {
+        Person person = personRepository.findByUserName(userName);
+        Order order = orderRepository.findOrderByPersonId(person.getPeId(), orderId);
+        Shipping shipping = shippingRepository.findByOdId(orderId);
+        shipping.setStatus("DONE");
+        shippingRepository.save(shipping);
+        Delivery delivery = deliveryRepository.findByOdId(orderId);
+        delivery.setDeliveryStatus("DONE");
+        deliveryRepository.save(delivery);
+        return order;
+    }
+
+    @Override
+    public Order setPaymentAsDoneForOrder(String userName, Long orderId) {
+        Person person = personRepository.findByUserName(userName);
+        Order order = orderRepository.findOrderByPersonId(person.getPeId(), orderId);
+        Payment payment = paymentRepository.findByOdId(orderId);
+        payment.setStatus("DONE");
+        paymentRepository.save(payment);
+        return order;
+    }
+
+    @Override
+    public Order updateOrderAsDone(String userName, Long orderId) {
+        Person person = personRepository.findByUserName(userName);
+        Order order = orderRepository.findOrderByPersonId(person.getPeId(), orderId);
+        order.setOrderStatus("DONE");
+        order.setStatus("INACTIVE");
         orderRepository.save(order);
         return order;
     }
