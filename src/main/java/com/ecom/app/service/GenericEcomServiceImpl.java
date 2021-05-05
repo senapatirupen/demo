@@ -34,8 +34,6 @@ public class GenericEcomServiceImpl implements GenericEcomService {
     @Autowired
     ShippingRepository shippingRepository;
     @Autowired
-    StockRepository stockRepository;
-    @Autowired
     UserDetailRepository userDetailRepository;
     @Autowired
     WishListRepository wishListRepository;
@@ -385,36 +383,6 @@ public class GenericEcomServiceImpl implements GenericEcomService {
     }
 
     @Override
-    public Collection<Stock> findAllStock() {
-        return stockRepository.findAll();
-    }
-
-    @Override
-    public Optional<Stock> findStockById(Long id) {
-        return stockRepository.findById(id);
-    }
-
-    @Override
-    public Stock saveStock(Stock stock) {
-        return stockRepository.save(stock);
-    }
-
-    @Override
-    public void deleteStock(Long id) {
-        stockRepository.deleteById(id);
-    }
-
-    @Override
-    public void deleteStock(Stock stock) {
-        stockRepository.delete(stock);
-    }
-
-    @Override
-    public Boolean existsStockById(Long id) {
-        return stockRepository.existsById(id);
-    }
-
-    @Override
     public Collection<UserDetail> findAllUserDetail() {
         return userDetailRepository.findAll();
     }
@@ -590,16 +558,6 @@ public class GenericEcomServiceImpl implements GenericEcomService {
     @Override
     public void setShippingRepository(ShippingRepository shippingRepository) {
         this.shippingRepository = shippingRepository;
-    }
-
-    @Override
-    public StockRepository getStockRepository() {
-        return stockRepository;
-    }
-
-    @Override
-    public void setStockRepository(StockRepository stockRepository) {
-        this.stockRepository = stockRepository;
     }
 
     @Override

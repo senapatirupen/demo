@@ -68,6 +68,12 @@ public class UserInteractionServiceImpl implements UserInteractionService {
         return userDetail;
     }
 
+    @Override
+    public UserDetail findUserDetailByPhoneNumber(String phoneNumber) {
+        UserDetail userDetail = userDetailRepository.findByPhoneNumber(phoneNumber);
+        return userDetail;
+    }
+
     public UserDetail findUserDetailByEmailId(String emailId) {
         UserDetail userDetail = userDetailRepository.findByEmailId(emailId);
         return userDetail;
@@ -94,6 +100,17 @@ public class UserInteractionServiceImpl implements UserInteractionService {
         return userDetail;
     }
 
+    public UserDetail findByPhoneNumberOrEmailId(String phoneNumberEmailId) {
+        String emailId = "";
+        String phoneNumber = "";
+        if (phoneNumberEmailId.contains(".com"))
+            emailId = phoneNumberEmailId;
+        else
+            phoneNumber = phoneNumberEmailId;
+        UserDetail userDetail = userDetailRepository.validatePhoneNumberOrEmailId(phoneNumber, emailId);
+        return userDetail;
+    }
+
     @Override
     public Address createAddress(String userName, Address address) {
         Person person = findPersonByUserName(userName);
@@ -110,10 +127,54 @@ public class UserInteractionServiceImpl implements UserInteractionService {
         return newAddress;
     }
 
+    @Override
+    public Address updateAddress(String userName, Address address) {
+        Address existAddress = addressRepository.findById(address.getAdId()).get();
+        existAddress.setAddressLineOne(address.getAddressLineOne());
+        existAddress.setAddressLineTwo(address.getAddressLineTwo());
+        existAddress.setCityVillage(address.getCityVillage());
+        existAddress.setCountry(address.getCountry());
+        existAddress.setLandmark(address.getLandmark());
+        existAddress.setState(address.getState());
+        existAddress.setZipcode(address.getZipcode());
+        existAddress.setType(address.getType());
+        existAddress = addressRepository.save(existAddress);
+        log.info("Updated Address >>>>> {}", existAddress.toString());
+        return existAddress;
+    }
+
+    @Override
+    public Collection<Address> allAddresses(String userName) {
+        Collection<Address> addresses = personRepository.findByUserName(userName).getAddresses();
+        return addresses;
+    }
+
+    @Override
+    public UserDetail singIn(UserDetail userDetail){
+        userDetail = findByPhoneNumberOrEmailId(userDetail.getStatus());
+        if(Objects.isNull(userDetail.getUsId()))
+            userDetail.setStatus("User Not Found");
+        return userDetail;
+    }
+
+    @Override
+    public UserDetail resetPassword(UserDetail userDetail){
+        UserDetail userDetail1 = findByPhoneNumberOrEmailId(userDetail.getStatus());
+        if(Objects.isNull(userDetail1.getUsId())) {
+            userDetail.setStatus("User Not Found");
+            return userDetail;
+        }
+        else {
+            userDetail1.setPassword(userDetail.getPassword());
+            userDetailRepository.save(userDetail1);
+        }
+        return userDetail1;
+    }
+
 
     @Override
     public UserDetail createUserDetail(UserDetail userDetail) {
-        Boolean valid = validateUserDetail(userDetail);
+        Boolean valid = validateUserDetail(userDetail).containsKey(true);
         UserDetail newUserDetail = null;
         if (!valid) {
             userDetail.setCreatedBy(userDetail.getUserName());
@@ -129,25 +190,31 @@ public class UserInteractionServiceImpl implements UserInteractionService {
             personRepository.save(person);
             log.info("New Person >>>>> {}", person.toString());
             log.info("New User Detail >>>>> {}", newUserDetail.toString());
+        } else {
+            userDetail.setStatus(validateUserDetail(userDetail).get(true));
+            return userDetail;
         }
         return newUserDetail;
     }
 
-    public Boolean validateUserDetail(UserDetail userDetail) {
+    public HashMap<Boolean, String> validateUserDetail(UserDetail userDetail) {
         UserDetail validUserDetail = null;
+        HashMap<Boolean, String> userInfo = new HashMap<Boolean, String>();
         Boolean flag = false;
-        if (StringUtils.isNotBlank(userDetail.getUserName())) {
-            validUserDetail = findUserDetailByUserName(userDetail.getUserName());
-            if (!Objects.isNull(validUserDetail) && StringUtils.isNotBlank(validUserDetail.getUserName())) {
+        if (StringUtils.isNotBlank(userDetail.getPhoneNumber())) {
+            validUserDetail = findUserDetailByPhoneNumber(userDetail.getPhoneNumber());
+            if (!Objects.isNull(validUserDetail) && StringUtils.isNotBlank(validUserDetail.getEmailId())) {
                 flag = true;
+                userInfo.put(true, "Phone Number Already Exist");
             }
         }
         if (StringUtils.isNotBlank(userDetail.getEmailId())) {
             validUserDetail = userDetailRepository.findByEmailId(userDetail.getEmailId());
-            if (!Objects.isNull(validUserDetail) && StringUtils.isNotBlank(validUserDetail.getEmailId())) {
+            if (!Objects.isNull(validUserDetail) && StringUtils.isNotBlank(validUserDetail.getPhoneNumber())) {
                 flag = true;
+                userInfo.put(true, "EmailId Already Exist");
             }
         }
-        return flag;
+        return userInfo;
     }
 }

@@ -1,5 +1,6 @@
-package com.ecom.app.entity;
+package com.ecom.app.entity.inventory;
 
+import com.ecom.app.entity.AuditLog;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,17 +10,17 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "STOCK")
+@Table(name = "ADMIN_PRODUCT_STOCK")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Stock extends AuditLog {
+public class AdminProductStock extends AuditLog {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ST_ID", insertable = false, updatable = false, nullable = false)
-    private Long stId;
+    @Column(name = "ADPRST_ID", insertable = false, updatable = false, nullable = false)
+    private Long adprstId;
     @Column(name = "NAME", unique = false, nullable = false)
     private String name;
     @Column(name="START_DATE", nullable = false, unique = false)

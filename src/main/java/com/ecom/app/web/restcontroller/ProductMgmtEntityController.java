@@ -65,6 +65,13 @@ public class ProductMgmtEntityController {
         return new ResponseEntity<>(newAddress, HttpStatus.OK);
     }
 
+    @PostMapping(value = "/updateaddress/{userName}")
+    public ResponseEntity<Address> updateAddress(@PathVariable String userName, @RequestBody Address address) {
+        Address newAddress  = userInteractionService.updateAddress(userName, address);
+        displayObjectAsJson(newAddress);
+        return new ResponseEntity<>(newAddress, HttpStatus.OK);
+    }
+
     @GetMapping(value = "/getaddress/{userName}")
     public ResponseEntity<Collection<Address>> getAddresses(@PathVariable String userName) {
         Collection<Address> newAddress  = userInteractionService.findPersonAddressesByUserName(userName);
@@ -149,7 +156,7 @@ public class ProductMgmtEntityController {
     }
 
     @PutMapping(value = "/addshippinganddeliveryanddeliveryaddresstoorder/{userName}")
-    public ResponseEntity<Order> addShippingAndDeliveryAndDeliveryAddressToOrder(@PathVariable String userName, @RequestParam Long orderId, @RequestParam Long addressId, @RequestBody DeliveryAddress deliveryAddress) {
+    public ResponseEntity<Order> addShippingAndDeliveryAndDeliveryAddressToOrder(@PathVariable String userName, @RequestParam Long orderId, @RequestParam(required = false) Long addressId, @RequestBody DeliveryAddress deliveryAddress) {
         Order order  = orderManagementService.addShippingAndDeliveryAndDeliveryAddressToOrder(userName, orderId, addressId, deliveryAddress);
         displayObjectAsJson(order);
         return new ResponseEntity<>(order, HttpStatus.OK);

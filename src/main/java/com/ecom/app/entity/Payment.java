@@ -19,6 +19,8 @@ public class Payment extends AuditLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="PA_ID", insertable = false, updatable = false, nullable = false)
     private Long paId;
+    @Column(name="OD_ID")
+    private Long odId;
     @Column(name="NAME", unique = false, nullable = true)
     private String name;
     @Column(name="PRICE", unique = false, nullable = true)

@@ -143,18 +143,6 @@ public interface GenericEcomService {
 
     Boolean existsShippingById(Long id);
 
-    Collection<Stock> findAllStock();
-
-    Optional<Stock> findStockById(Long id);
-
-    Stock saveStock(Stock stock);
-
-    void deleteStock(Long id);
-
-    void deleteStock(Stock stock);
-
-    Boolean existsStockById(Long id);
-
     Collection<UserDetail> findAllUserDetail();
 
     Optional<UserDetail> findUserDetailById(Long id);
@@ -222,10 +210,6 @@ public interface GenericEcomService {
     ShippingRepository getShippingRepository();
 
     void setShippingRepository(ShippingRepository shippingRepository);
-
-    StockRepository getStockRepository();
-
-    void setStockRepository(StockRepository stockRepository);
 
     UserDetailRepository getUserDetailRepository();
 

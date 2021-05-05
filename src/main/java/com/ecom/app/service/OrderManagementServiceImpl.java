@@ -25,6 +25,8 @@ public class OrderManagementServiceImpl implements OrderManagementService {
     @Autowired
     BillingAddressRepository billingAddressRepository;
     @Autowired
+    DeliveryAddressRepository deliveryAddressRepository;
+    @Autowired
     AddressRepository addressRepository;
     @Autowired
     DeliveryRepository deliveryRepository;
@@ -95,7 +97,7 @@ public class OrderManagementServiceImpl implements OrderManagementService {
 //        Product product = productRepository.findProductByCartId(cart.getCaId());
 //        product.setCaId(null);
 //        productRepository.save(product);
-        Product product = cart.getProducts().stream().filter(p -> p.getName() == productName).distinct().findAny().get();
+        Product product = cart.getProducts().stream().filter(p -> productName.equalsIgnoreCase(p.getName())).findAny().get();
         cart.getProducts().remove(product);
 //        Cart cart = personRepository.findCartByUserName(userName);
 //        cartRepository.findProduct
@@ -139,6 +141,7 @@ public class OrderManagementServiceImpl implements OrderManagementService {
             totalAmount += listIterator.next();
         }
         payment.setPrice(totalAmount);
+        payment.setOdId(orderId);
         paymentRepository.save(payment);
         order.setPayment(payment);
         orderRepository.save(order);
@@ -163,19 +166,34 @@ public class OrderManagementServiceImpl implements OrderManagementService {
     public Order addShippingAndDeliveryAndDeliveryAddressToOrder(String userName, Long orderId, Long addressId,
                                                                  DeliveryAddress deliveryAddress) {
         Person person = personRepository.findByUserName(userName);
-        Order order = orderRepository.findOrderByPersonId(person.getPeId());
-        if(null != addressId) {
-            Address address = addressRepository.findById(addressId).get();
-            deliveryAddress.setZipcode(address.getZipcode());
-            deliveryAddress.setType("DELIVERY");
-        }
+        Order order = orderRepository.findOrderByPersonId(person.getPeId(), orderId);
         Shipping shipping = new Shipping();
         Delivery delivery = new Delivery();
-        delivery.setDeliveryAddress(deliveryAddress);
+        if(!Objects.isNull(addressId)) {
+            Address address = addressRepository.findById(addressId).get();
+            deliveryAddress.setAddressLineOne(address.getAddressLineOne());
+            deliveryAddress.setAddressLineTwo(address.getAddressLineTwo());
+            deliveryAddress.setCityVillage(address.getCityVillage());
+            deliveryAddress.setCountry(address.getCountry());
+            deliveryAddress.setState(address.getState());
+            deliveryAddress.setLandmark(address.getLandmark());
+            deliveryAddress.setZipcode(address.getZipcode());
+            deliveryAddress.setType("DELIVERY");
+        } else {
+            delivery.setDeliveryAddress(deliveryAddress);
+        }
         delivery.setDeliveryStatus("OPEN");
         deliveryRepository.save(delivery);
+        deliveryAddress.setDeId(delivery.getDeId());
+        deliveryAddressRepository.save(deliveryAddress);
         shipping.setDelivery(delivery);
         shipping.setOdId(orderId);
+        List<String> productNames =
+                order.getProducts().stream()
+                        .map(Product::getName)
+                        .collect(Collectors.toList());
+        String products = productNames.stream().map(Object::toString).collect(Collectors.joining(","));
+        shipping.setPrIds(products);
         shipping.setShippingStatus("OPEN");
         shippingRepository.save(shipping);
         delivery.setShId(shipping.getShId());
@@ -189,7 +207,7 @@ public class OrderManagementServiceImpl implements OrderManagementService {
     public Order addShippingAndReturnAndReturnAddressToOrder(String userName, Long orderId, Long addressId,
                                                                  ReturnAddress returnAddress) {
         Person person = personRepository.findByUserName(userName);
-        Order order = orderRepository.findOrderByPersonId(person.getPeId());
+        Order order = orderRepository.findOrderByPersonId(person.getPeId(), orderId);
         if(null != addressId) {
             Address address = addressRepository.findById(addressId).get();
             returnAddress.setZipcode(address.getZipcode());

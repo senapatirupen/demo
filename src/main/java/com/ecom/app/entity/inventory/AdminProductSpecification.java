@@ -1,5 +1,6 @@
-package com.ecom.app.entity;
+package com.ecom.app.entity.inventory;
 
+import com.ecom.app.entity.AuditLog;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,17 +9,17 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name="PRODUCT_SPECIFICATION")
+@Table(name="ADMIN_PRODUCT_SPECIFICATION")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductSpecification extends AuditLog {
+public class AdminProductSpecification extends AuditLog {
     private static final long serialVersionUID=1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="PRSP_ID", insertable = false, updatable = false, nullable = false)
-    private Long prspId;
+    @Column(name="ADPRSP_ID", insertable = false, updatable = false, nullable = false)
+    private Long adprspId;
     @Column(name="CATEGORY", unique = false, nullable = true)
     @Enumerated(EnumType.STRING)
     private Category category;
