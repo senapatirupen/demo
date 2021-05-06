@@ -254,7 +254,7 @@ public class OrderManagementServiceImpl implements OrderManagementService {
         Shipping shipping = shippingRepository.findByOdId(orderId);
         shipping.setStatus("DONE");
         shippingRepository.save(shipping);
-        Delivery delivery = deliveryRepository.findByOdId(orderId);
+        Delivery delivery = deliveryRepository.findByShId(shipping.getShId());
         delivery.setDeliveryStatus("DONE");
         deliveryRepository.save(delivery);
         return order;
