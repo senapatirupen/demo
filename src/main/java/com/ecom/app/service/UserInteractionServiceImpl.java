@@ -144,6 +144,14 @@ public class UserInteractionServiceImpl implements UserInteractionService {
     }
 
     @Override
+    public Boolean removeAddress(String userName, Long adId) {
+        Address existAddress = addressRepository.findById(adId).get();
+        addressRepository.deleteById(adId);
+        log.info("Removed Address >>>>> {}", existAddress.toString());
+        return true;
+    }
+
+    @Override
     public Collection<Address> allAddresses(String userName) {
         Collection<Address> addresses = personRepository.findByUserName(userName).getAddresses();
         return addresses;

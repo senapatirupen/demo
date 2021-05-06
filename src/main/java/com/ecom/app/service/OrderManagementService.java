@@ -24,6 +24,11 @@ public interface OrderManagementService {
     public Order addShippingAndDeliveryAndDeliveryAddressToOrder(String userName, Long orderId, Long addressId,
                                                                  DeliveryAddress deliveryAddress);
 
+    Order addDeliveryAddressToDeliveryForShippingOnOrder(String userName, Long orderId, Long addressId,
+                                                         DeliveryAddress deliveryAddress);
+
+    Order addShippingAndDeliveryToOrder(String userName, Long orderId);
+
     Order addShippingAddressToShippingForOrder(String userName, Long orderId, Long shippingId,
                                                ShippingAddress shippingAddress);
 
@@ -32,6 +37,8 @@ public interface OrderManagementService {
     Order setPaymentAsDoneForOrder(String userName, Long orderId);
 
     Order updateOrderAsDone(String userName, Long orderId);
+
+    Collection<Order> viewAllOrders(String userName);
 
     public Order addShippingAndReturnAndReturnAddressToOrder(String userName, Long orderId, Long addressId,
                                                              ReturnAddress returnAddress);

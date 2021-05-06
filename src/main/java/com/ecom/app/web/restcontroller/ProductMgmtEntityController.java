@@ -79,6 +79,12 @@ public class ProductMgmtEntityController {
         return new ResponseEntity<>(newAddress, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/removeaddress/{userName}")
+    public ResponseEntity<Collection<Address>> removeAddresses(@PathVariable String userName, @RequestParam Long addressId) {
+        userInteractionService.removeAddress(userName, addressId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @PostMapping(value = "/createcart/{userName}")
     public ResponseEntity<Cart> createCart(@PathVariable String userName, @RequestBody Cart cart) {
         cart  = orderManagementService.createCartByUserName(userName, cart);
@@ -190,6 +196,20 @@ public class ProductMgmtEntityController {
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
+    @PutMapping(value = "/adddeliveryaddresstodeliveryforshippingonorder/{userName}")
+    public ResponseEntity<Order> addDeliveryAddressToDeliveryForShippingOnOrder(@PathVariable String userName, @RequestParam Long orderId, @RequestParam(required = false) Long addressId, @RequestBody DeliveryAddress deliveryAddress) {
+        Order order  = orderManagementService.addDeliveryAddressToDeliveryForShippingOnOrder(userName, orderId, addressId, deliveryAddress);
+        displayObjectAsJson(order);
+        return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/addshippinganddeliverytoorder/{userName}")
+    public ResponseEntity<Order> addShippingAndDeliveryToOrder(@PathVariable String userName, @RequestParam Long orderId) {
+        Order order  = orderManagementService.addShippingAndDeliveryToOrder(userName, orderId);
+        displayObjectAsJson(order);
+        return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
     @PutMapping(value = "/addshippingaddresstoshippingfororder/{userName}")
     public ResponseEntity<Order> addShippingAddressToShippingForOrder(@PathVariable String userName, @RequestParam Long orderId, @RequestParam Long shippingId, @RequestBody ShippingAddress shippingAddress) {
         Order order  = orderManagementService.addShippingAddressToShippingForOrder(userName, orderId, shippingId, shippingAddress);
@@ -216,6 +236,13 @@ public class ProductMgmtEntityController {
         Order order  = orderManagementService.updateOrderAsDone(userName, orderId);
         displayObjectAsJson(order);
         return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/viewallorders/{userName}")
+    public ResponseEntity<Collection<Order>> viewAllOrders(@PathVariable String userName) {
+        Collection<Order> orders  = orderManagementService.viewAllOrders(userName);
+        displayObjectAsJson(orders);
+        return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
     @PutMapping(value = "/addshippingandreturnandreturnaddresstoorder/{userName}")

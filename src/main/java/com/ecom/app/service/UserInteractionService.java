@@ -9,6 +9,8 @@ import java.util.Collection;
 public interface UserInteractionService {
     Address updateAddress(String userName, Address address);
 
+    Boolean removeAddress(String userName, Long adId);
+
     Collection<Address> allAddresses(String userName);
 
     UserDetail singIn(UserDetail userDetail);

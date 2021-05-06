@@ -234,6 +234,56 @@ public class OrderManagementServiceImpl implements OrderManagementService {
     }
 
     @Override
+    public Order addDeliveryAddressToDeliveryForShippingOnOrder(String userName, Long orderId, Long addressId,
+                                                                DeliveryAddress deliveryAddress) {
+        Person person = personRepository.findByUserName(userName);
+        Order order = orderRepository.findOrderByPersonId(person.getPeId(), orderId);
+        Shipping shipping = shippingRepository.findByOdId(orderId);
+        Delivery delivery = deliveryRepository.findByShId(shipping.getShId());
+        deliveryAddress.setDeId(delivery.getDeId());
+        if(!Objects.isNull(addressId)) {
+            Address address = addressRepository.findById(addressId).get();
+            deliveryAddress.setAddressLineOne(address.getAddressLineOne());
+            deliveryAddress.setAddressLineTwo(address.getAddressLineTwo());
+            deliveryAddress.setCityVillage(address.getCityVillage());
+            deliveryAddress.setCountry(address.getCountry());
+            deliveryAddress.setState(address.getState());
+            deliveryAddress.setLandmark(address.getLandmark());
+            deliveryAddress.setZipcode(address.getZipcode());
+            deliveryAddress.setType("DELIVERY");
+        } else {
+            delivery.setDeliveryAddress(deliveryAddress);
+        }
+        deliveryAddressRepository.save(deliveryAddress);
+        return order;
+    }
+
+    @Override
+    public Order addShippingAndDeliveryToOrder(String userName, Long orderId) {
+        Person person = personRepository.findByUserName(userName);
+        Order order = orderRepository.findOrderByPersonId(person.getPeId(), orderId);
+        Shipping shipping = new Shipping();
+        Delivery delivery = new Delivery();
+        delivery.setDeliveryStatus("OPEN");
+        deliveryRepository.save(delivery);
+        shipping.setDelivery(delivery);
+        shipping.setOdId(orderId);
+        List<String> productNames =
+                order.getProducts().stream()
+                        .map(Product::getName)
+                        .collect(Collectors.toList());
+        String products = productNames.stream().map(Object::toString).collect(Collectors.joining(","));
+        shipping.setPrIds(products);
+        shipping.setShippingStatus("OPEN");
+        shippingRepository.save(shipping);
+        delivery.setShId(shipping.getShId());
+        setShippingForOrder(order, shipping);
+        deliveryRepository.save(delivery);
+        orderRepository.save(order);
+        return order;
+    }
+
+    @Override
     public Order addShippingAddressToShippingForOrder(String userName, Long orderId, Long shippingId,
                                                       ShippingAddress shippingAddress) {
         Person person = personRepository.findByUserName(userName);
@@ -278,6 +328,12 @@ public class OrderManagementServiceImpl implements OrderManagementService {
         order.setStatus("INACTIVE");
         orderRepository.save(order);
         return order;
+    }
+
+    @Override
+    public Collection<Order> viewAllOrders(String userName) {
+        Person person = personRepository.findByUserName(userName);
+        return person.getOrders();
     }
 
     @Override
